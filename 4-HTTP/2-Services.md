@@ -7,7 +7,6 @@ To create a service, use the ``@Service`` decorator. This decorator allows the s
 ```typescript
 @Service('task')
 export class TaskService extends AbstractService {
-    public override name = 'task';
     // Service methods and logic
 }
 ```

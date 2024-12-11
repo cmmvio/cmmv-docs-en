@@ -10,9 +10,9 @@
 ">
     <p style="font-weight: bold; margin-bottom: 0.5rem;">Notice</p>
     <p>
-        The support for <code>Vue</code> and <code>TailwindCSS</code> was removed from the core module in version <strong>0.7.5</strong>. 
-        It is now recommended to use <code>Vite</code> for handling frontend assets and bundling. 
-        Additionally, you can use the <code>@cmmv/vue</code> module to transpile the RPC mixins and composables required for Vue integration.
+        The support for <strong>Vue</strong> and <strong>TailwindCSS</strong> was removed from the core module in version <strong>0.7.5</strong>. 
+        It is now recommended to use <strong>Vite</strong> for handling frontend assets and bundling. 
+        Additionally, you can use the <strong>@cmmv/vue</strong> module to transpile the RPC mixins and composables required for Vue integration.
     </p>
 </div>
 

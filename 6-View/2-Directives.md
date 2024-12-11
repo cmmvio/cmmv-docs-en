@@ -1,5 +1,20 @@
 # Directives
 
+<div style="
+    background-color: #DBEAFE; 
+    border-left: 4px solid #3B82F6; 
+    color: #1E40AF; 
+    padding: 1rem; 
+    border-radius: 0.375rem; 
+    margin: 1.5rem 0;
+">
+    <p style="font-weight: bold; margin-bottom: 0.5rem;">Important Notice</p>
+    <p>
+        SSR (Server-Side Rendering) directives are exclusively available for implementations using <strong>@cmmv/view</strong> as the rendering template. 
+        For applications in <strong>Vue</strong> served by <strong>Vite</strong> or static files, the templates do not go through SSR functions, and the directives will not be processed during the build or runtime.
+    </p>
+</div>
+
 Preloading data that will be sent directly in HTML is a crucial factor for SEO (Search Engine Optimization). When a search engine analyzes a page, it searches for content that is already rendered in HTML. By ensuring that the essential data of the page is already loaded in HTML, rendering time is reduced and the content is immediately accessible for indexing, improving visibility in search results.
 
 CMMV (Contract-Model-Model-View) was designed with this need in mind, optimizing content delivery in a way that prioritizes SEO. The system emulates the traditional MVC (Model-View-Controller) model, widely used by well-known frameworks such as Ruby on Rails, Laravel, or Spring. This is done through SSR (Server-Side Rendering) directives, which allow data to be processed on the server and inserted directly into HTML, without the need for another application or overloading the frontend with complex frameworks.

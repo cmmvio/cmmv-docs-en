@@ -10,8 +10,8 @@
 ">
     <p style="font-weight: bold; margin-bottom: 0.5rem;">Notice</p>
     <p>
-        Support for <code>TailwindCSS</code> integration was removed from the core module in version <strong>0.7.5</strong>. 
-        It is now recommended to use <code>Vite</code> for managing frontend assets and bundling. Follow the steps below 
+        Support for <strong>TailwindCSS</strong> integration was removed from the core module in version <strong>0.7.5</strong>. 
+        It is now recommended to use <strong>Vite</strong> for managing frontend assets and bundling. Follow the steps below 
         to configure TailwindCSS with Vite in your CMMV project.
     </p>
 </div>
