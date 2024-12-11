@@ -1,5 +1,51 @@
 # Changelog
 
+## Version 0.8.0 (December 10, 2024)
+
+### Critical Fixes
+
+- **Infinite Loop on Non-Existent Routes**:  
+  Resolved a critical issue where non-existent routes caused an infinite request loop, improving server stability.
+
+### Additions
+
+- **Groups and Root Access in Dev Mode**:  
+  - Added support for user groups, enabling more granular control over permissions and roles.
+  - Introduced root access capabilities in development mode, simplifying debugging and testing scenarios.
+
+- **Root Parameter**:  
+  Added a new `rootParam` feature to streamline configuration and enhance flexibility for root-level operations.
+
+### Improvements
+
+- **Server Update to Version 0.7.1**:  
+  Upgraded the server core to version `0.7.1`, bringing optimizations and improved compatibility with the latest modules.
+
+- **Service Updates**:  
+  Enhanced the service layer with better error handling, improved request processing, and support for dynamic root-level configurations.
+
+- **@cmmv/auth Module**:  
+  Fixed incorrect HTTP 401 response handling to ensure proper authentication flow and error messaging.
+
+### Removals
+
+- **Vue from `@cmmv/view`**:  
+  Vue has been completely removed from `@cmmv/view`. Developers should now use the dedicated `@cmmv/vue` module for all Vue-related integrations.
+
+### Recommendations
+
+- **Use `@cmmv/vue` for Vue Integrations**:  
+  Transition to the `@cmmv/vue` module for seamless Vue support, including RPC mixins and composables.
+
+- **Update to Server 0.7.1**:  
+  Ensure your application is updated to the latest server version to leverage new fixes and features.
+
+### Updates
+
+- **Documentation**:  
+  Updated documentation to reflect the changes and provide guidance on using new features and best practices.
+
+
 ## Version 0.7.5 (December 10, 2024)
 
 ### Additions
