@@ -18,7 +18,6 @@
     </p>
 </div>
 
-
 The `@cmmv/reactivity` module was created based on the core ideas of [Petite Vue](https://github.com/vuejs/petite-vue), a simplified version of Vue.js. Petite Vue, developed by Evan You, the creator of Vue.js, offers a lightweight alternative to the full Vue framework, providing only the essential reactivity and templating features needed for smaller or simpler projects. Petite Vue is just ``6KB`` in size and implements basic directives, making it an excellent foundation for building minimal reactive systems.
 
 Inspired by Petite Vue's design philosophy, `@cmmv/reactivity` integrates this lightweight, reactive approach into the CMMV framework. By doing so, it offers developers the ability to use two-way data binding and efficient UI updates with minimal overhead. The core reactivity engine from Petite Vue has been adapted to fit seamlessly into the CMMV ecosystem, allowing for easy integration with server-side rendering, WebSockets, Protobuf, and other key modules of CMMV.

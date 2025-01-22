@@ -1,5 +1,23 @@
 # View
 
+<div style="
+    background-color: #FEF3C7; 
+    border-left: 4px solid #F59E0B; 
+    color: #92400E; 
+    padding: 1rem; 
+    border-radius: 0.375rem; 
+    margin: 1.5rem 0;
+">
+    <p style="font-weight: bold; margin-bottom: 0.5rem;">Notice</p>
+    <p>
+        Starting from version <strong>0.8.3</strong>, the <strong>@cmmv/view</strong> module has been fully decoupled from the HTTP system, becoming an optional module for server-side rendering (SSR). 
+        It continues to function with both the default server and Express but must now be explicitly enabled in the configuration settings and installed separately.
+    </p>
+    <p>
+        This change allows for greater flexibility, enabling projects to choose whether to include the view module based on their specific needs, reducing dependencies and improving modularity.
+    </p>
+</div>
+
 The ``@cmmv/view`` module in CMMV is a custom view engine designed to optimize SEO and performance by incorporating server-side rendering (SSR) with seamless integration into modern frontend frameworks. Built on top of EJS (Embedded JavaScript), it serves as a middleware for Express and Fastify, processing views in real-time and injecting pre-loaded data into the HTML before it reaches the browser. This approach enables search engines to index content that has already been processed, while still offering flexibility to use popular frontend frameworks like Vue.js, React, or Angular for additional client-side interaction.
 
 Traditional client-side rendering (CSR) frameworks, such as Vue.js and React, generate content dynamically in the browser. While these frameworks provide rich interactivity, they can negatively impact SEO due to the delayed rendering of content—search engines may not fully index dynamic content that relies on JavaScript execution.
@@ -41,6 +59,14 @@ Client-side rendering frameworks often involve large JavaScript bundles and sign
 
 **Pre-Loaded Data for SEO and UX**
 By pre-fetching data and injecting it into the HTML, ``@cmmv/view`` ensures that users and search engines see the most relevant content immediately. Whether it’s product information, blog content, or news articles, everything is available as soon as the page loads, improving both SEO and user engagement.
+
+# Installation
+
+Install the @cmmv/view package via npm:
+
+```bash
+$ pnpm add @cmmv/view
+```
 
 ## Exemple
 
@@ -93,9 +119,32 @@ The ability to serve pre-rendered content, while maintaining the flexibility of 
 
 The ``@cmmv/view`` module in CMMV allows for flexible customization through the ``.cmmv.config.js`` file. Below are the available configurations that you can use to fine-tune the behavior of the view engine, internationalization (i18n), meta tags for SEO, security headers, and JavaScript resources.
 
+| Configuration       | Description                                                                                  | Example                                                    |
+|--------------------|----------------------------------------------------------------------------------------------|------------------------------------------------------------|
+| `server.publicDirs` | Specifies the public directories that will be served statically by the server.                | `["public", "public/views"]`                               |
+| `server.render`     | Specifies the SSR rendering module (e.g., `@cmmv/view`). Must be installed separately.         | `"@cmmv/view"`                                             |
+| `i18n.localeFiles`  | Path to the localization (translation) files used in the project.                             | `"./src/locale"`                                           |
+| `i18n.default`      | Sets the default language for the application.                                                 | `"en"`                                                     |
+| `view.extractInlineScript` | If enabled, extracts inline scripts into separate files to improve performance.         | `true`                                                     |
+| `view.minifyHTML`   | Minifies the rendered HTML to improve performance and reduce response size.                    | `true`                                                     |
+| `view.scriptsTimestamp` | Adds timestamps to scripts to prevent caching issues.                                     | `false`                                                    |
+| `head.title`        | Sets the application title that appears in the browser tab.                                   | `"CMMV"`                                                   |
+| `head.htmlAttrs`    | Defines global attributes for the `<html>` tag, such as language settings.                      | `{ lang: "pt-br" }`                                        |
+| `head.meta`         | A list of meta tags to be inserted into the page, such as charset and viewport settings.       | `[{ charset: "utf-8" }, { name: "viewport", content: "width=device-width" }]` |
+| `head.link`         | Specifies external links such as favicon and fonts.                                            | `[{ rel: "icon", href: "assets/favicon/favicon.ico" }]`    |
+| `headers`           | Defines HTTP headers for security and content policy controls.                                 | `{ "Content-Security-Policy": ["default-src 'self'"] }`    |
+| `scripts`           | A list of scripts to be loaded in the application, such as external JavaScript bundles.        | `[{ type: "text/javascript", src: "/assets/bundle.min.js" }]` |
+
+
 ```typescript
 module.exports = {
     ...
+
+    server: {
+        ...
+        publicDirs: ["public", 'public/views'],
+        render: "@cmmv/view",
+    },
 
     i18n: {
         localeFiles: "./src/locale",
@@ -104,7 +153,8 @@ module.exports = {
 
     view: {
         extractInlineScript: true,
-        minifyHTML: true
+        minifyHTML: true,
+        scriptsTimestamp: false
     },
 
     head: {
@@ -152,17 +202,6 @@ i18n: {
 
 **localeFiles:** Directory where the translation files for different languages are stored.
 **default:** The default language to be used when no specific locale is selected.
-
-## View Configuration
-
-The view configuration lets you control how the HTML output is processed. It includes options for extracting inline scripts and minifying HTML for optimized performance.
-
-```typescript
-view: {
-    extractInlineScript: true, 
-    minifyHTML: true  
-}
-```
 
 ## Head Configuration
 
