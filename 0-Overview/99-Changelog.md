@@ -1,5 +1,62 @@
 # Changelog
 
+## Version 0.8.7 (January 22, 2025)
+
+### Critical Fixes
+
+- **Route Identification Fixes in `@cmmv/server`**:  
+  Resolved issues related to incorrect route identification, ensuring accurate request routing and improved reliability.
+
+- **Helmet Middleware Fix**:  
+  Fixed inconsistencies in the Helmet security middleware configuration, enhancing overall application security.
+
+- **Lifecycle Handling in `@cmmv/http`**:  
+  Addressed issues in the request lifecycle to ensure proper execution flow and reduce potential request stalls.
+
+### Additions
+
+- **Header Return Points in `@cmmv/server`**:  
+  Introduced additional return points for header processing, preventing unnecessary operations when responses have already been sent.
+
+- **Function to Compile in `@cmmv/core`**:  
+  Added a new `compile` function, allowing developers to process modules and generate transpiled files without running the application.
+
+### Improvements
+
+- **Performance Enhancements in `@cmmv/server`**:  
+  Optimized various server components, resulting in faster response times and improved throughput.
+
+- **Benchmark Updates**:  
+  Updated benchmarking results to reflect performance improvements and showcase optimizations across the server stack.
+
+- **Request Handling Fixes in `@cmmv/http`**:  
+  Improved middleware import handling and request processing for better stability and extensibility.
+
+- **`scriptsTimestamp` and Cache Control in `@cmmv/view`**:  
+  - Added `scriptsTimestamp` configuration to allow timestamp-based script handling.
+  - Integrated script modification time (mtime) in query requests to bypass cache headers and ensure up-to-date resources.
+
+### Removals
+
+- **Vite Removal from `@cmmv/http`**:  
+  Completely removed Vite from the HTTP module to streamline dependencies and enhance flexibility.
+
+- **Decoupling of `@cmmv/view` from `@cmmv/http`**:  
+  `@cmmv/view` is now fully decoupled, making it an optional module for server-side rendering, offering more modularity.
+
+### Recommendations
+
+- **Update to the Latest Server Version**:  
+  To benefit from performance improvements and fixes, update to `@cmmv/server` version `0.8.7`.
+
+- **Refactor Vue Integrations**:  
+  With the decoupling of `@cmmv/view`, ensure proper adjustments in your project if Vue is being utilized.
+
+### Updates
+
+- **Documentation Refresh**:  
+  The documentation has been updated to reflect recent changes, providing clear guidelines on new features and improvements.
+
 ## Version 0.8.0 (December 10, 2024)
 
 ### Critical Fixes
