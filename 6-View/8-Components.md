@@ -75,7 +75,7 @@ export default {
 
 The component syntax is based on Vue.js, supporting lifecycle methods (``created``, ``mounted``), reactive ``data``, ``props``, and ``methods``. The component can also use scoped styles with SSR capabilities.
 
-For a complete example, see [CMMV Reactivity Samples](https://github.com/andrehrferreira/cmmv-reactivity/blob/main/samples/componentTemplate.cmmv).
+For a complete example, see [CMMV Reactivity Samples](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/componentTemplate.cmmv).
 
 ## Data 
 
@@ -135,7 +135,7 @@ createApp({
 
 <br/>
 
-``/samples/componentTemplate.cmmv`` [Github](https://github.com/andrehrferreira/cmmv-reactivity/blob/main/samples/componentTemplate.cmmv)
+``/samples/componentTemplate.cmmv`` [Github](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/componentTemplate.cmmv)
 
 ```html
 <template>

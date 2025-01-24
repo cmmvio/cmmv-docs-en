@@ -484,7 +484,7 @@ Below is an example of implementation of practically all the directives that wer
             </div>
 
             <div class="justify-between align-middle text-center mr-2 text-white flex">
-                <a href="https://github.com/andrehrferreira/cmmv" title="Github" target="_blank" class="text-2xl p-2 mt-2 hover:text-neutral-300">
+                <a href="https://github.com/cmmvio/cmmv" title="Github" target="_blank" class="text-2xl p-2 mt-2 hover:text-neutral-300">
                     <i class="fa-brands fa-github"></i>
                 </a>
 
@@ -517,7 +517,7 @@ Below is an example of implementation of practically all the directives that wer
 
                     <div class="absolute top-0 right-0">
                         <a 
-                            :href="`https://github.com/andrehrferreira/docs.cmmv.io/tree/main${docs.link?.replace('.html', '.md')}?plain=1`" 
+                            :href="`https://github.com/cmmvio/docs.cmmv.io/tree/main${docs.link?.replace('.html', '.md')}?plain=1`" 
                             target="_blank" 
                             title="Suggest change"
                         >
@@ -715,4 +715,4 @@ export class DocsController {
 }
 ```
 
-To have full access to the code, access [Github](https://github.com/andrehrferreira/docs.cmmv.io)
+To have full access to the code, access [Github](https://github.com/cmmvio/docs.cmmv.io)
