@@ -44,7 +44,7 @@ To install the ``@cmmv/reactivity`` package, simply run the following command:
 $ pnpm add @cmmv/reactivity
 ```
 
-Alternatively, you can visit the [GitHub repository](https://github.com/andrehrferreira/cmmv-reactivity) for more details.
+Alternatively, you can visit the [GitHub repository](https://github.com/cmmvio/cmmv-reactivity) for more details.
 
 The ``@cmmv/view`` module already integrates reactivity natively, so it does not need to be installed separately.
 
@@ -61,7 +61,7 @@ Binds the value of an input element to the application's data and enables two-wa
 <p>Username: {{ username }}</p>
 ```
 
-[Sample](https://github.com/andrehrferreira/cmmv-reactivity/blob/main/samples/model.html) : 
+[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/model.html) : 
 ```html
 <script type="module">
   import { createApp } from '../src'
@@ -148,7 +148,7 @@ Conditionally renders an element only if the specified expression is true. Unlik
 <p c-if="showMessage">This message is shown only if showMessage is true.</p>
 ```
 
-[Sample](https://github.com/andrehrferreira/cmmv-reactivity/blob/main/samples/if.html):
+[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/if.html):
 ```html
 <script type="module">
   import { createApp } from '../src'
@@ -174,7 +174,7 @@ Loops through an array or object and repeats the associated element for each ite
 </ul>
 ```
 
-[Sample](https://github.com/andrehrferreira/cmmv-reactivity/blob/main/samples/for.html): 
+[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/for.html): 
 ```html
 <script type="module">
     import { createApp } from '../src'
@@ -224,7 +224,7 @@ Attaches an event listener to an element. Commonly used for handling click event
 <button @click="incrementCounter">Click me!</button>
 ```
 
-[Sample](https://github.com/andrehrferreira/cmmv-reactivity/blob/main/samples/on.html): 
+[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/on.html): 
 ```html
 <script type="module">
   import { createApp } from '../src'
@@ -254,7 +254,7 @@ Dynamically binds an attribute to an expression. This is often used to modify at
 <img :src="imageSource">
 ```
 
-[Sample](https://github.com/andrehrferreira/cmmv-reactivity/blob/main/samples/bind.html):
+[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/bind.html):
 ```html
 <style>
     #green {

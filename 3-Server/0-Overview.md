@@ -4,7 +4,7 @@ The ``@cmmv/server`` is a minimalistic server written in TypeScript, designed to
 
 This project incorporates code from [Express](https://github.com/expressjs/express), [Koa](https://github.com/koajs/koa), and [Fastify](https://github.com/fastify/fastify), but has been completely rewritten in TypeScript with a focus on modernity and performance. Additionally, it integrates features from Vite to optimize the delivery of components and assets, ensuring a faster and more agile experience for modern applications.
 
-Due to the complexity of the project, it has been separated into another repository [cmmv-server monorepo](https://github.com/andrehrferreira/cmmv-server), which contains multiple packages. In addition to the core server, several modules have been implemented, including:
+Due to the complexity of the project, it has been separated into another repository [cmmv-server monorepo](https://github.com/cmmvio/cmmv-server), which contains multiple packages. In addition to the core server, several modules have been implemented, including:
 
 * body-parser
 * compression
