@@ -220,3 +220,102 @@ For a more detailed list of all available configurations, please visit the [Type
 * **host and port:** For specifying the host and port for databases like PostgreSQL, MySQL, etc.
 
 To properly configure the ``@cmmv/repository`` module, you need to specify your database connection settings in the ``.cmmv.config.js`` file. The example provided shows a typical setup using SQLite, but you can adjust the configuration for other databases like PostgreSQL or MySQL. For further details on possible configurations, refer to the [TypeORM documentation](https://typeorm.io).
+
+## Custom Index
+
+Starting from version 0.9, the ``@cmmv/repository`` module introduces support for custom index declarations within contracts. This feature allows developers to define more complex indexes directly in the contract using the index parameter in the ``@Contract`` decorator. It supports multi-field indexes and includes all available indexing options provided by TypeORM.
+
+```typescript
+@Contract({
+    controllerName: 'User',
+    protoPath: 'src/protos/auth.proto',
+    protoPackage: 'auth',
+    generateController: true,
+    auth: true,
+    imports: ['crypto'],
+    index: [
+        {
+            name: 'idx_user_login',
+            fields: ['username', 'password'],
+            options: {
+                where: "password IS NOT NULL",
+                expireAfterSeconds: 3600,
+            },
+        },
+    ],
+})
+export class UserContract extends AbstractContract {
+    @ContractField({ protoType: 'string', unique: true })
+    username: string;
+
+    @ContractField({ protoType: 'string' })
+    password: string;
+
+    @ContractField({ protoType: 'string', nullable: true })
+    googleId: string;
+
+    @ContractField({ protoType: 'string', defaultValue: '"[]"' })
+    groups: string;
+
+    @ContractField({ protoType: 'string', defaultValue: '"[]"' })
+    roles: string;
+
+    @ContractField({ protoType: 'bool', defaultValue: false })
+    root: boolean;
+}
+```
+
+### Index Options
+
+The ``index`` parameter accepts an array of index definitions, each containing the following options:
+
+```typescript
+export interface ContractIndexOptions {
+    unique?: boolean;
+    spatial?: boolean;
+    fulltext?: boolean;
+    nullFiltered?: boolean;
+    parser?: string;
+    where?: string;
+    sparse?: boolean;
+    background?: boolean;
+    concurrent?: boolean;
+    expireAfterSeconds?: number;
+}
+```
+
+### Generated Entity 
+
+The ``@cmmv/repository`` module will generate the corresponding TypeORM entity with the defined indexes:
+
+```typescript
+@Entity('user')
+@Index("idx_user_username", ["username"], { unique: true })
+@Index("idx_user_googleId", ["googleId"])
+@Index("idx_user_login", ["username", "password"], { 
+    where: "password IS NOT NULL", 
+    expireAfterSeconds: 3600 
+})
+export class UserEntity implements IUser {
+    @ObjectIdColumn()
+    _id: ObjectId;
+
+    @Column({ type: 'varchar' })
+    username: string;
+
+    @Column({ type: 'varchar' })
+    password: string;
+
+    @Column({ type: 'varchar', nullable: true })
+    googleId: string;
+
+    @Column({ type: 'varchar', default: "[]" })
+    groups: string;
+
+    @Column({ type: 'varchar', default: "[]" })
+    roles: string;
+
+    @Column({ type: 'boolean', default: false })
+    root: boolean;
+}
+```

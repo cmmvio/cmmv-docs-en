@@ -51,7 +51,7 @@ Defines a contract field with options such as:
 - **unique**: Ensures uniqueness.
 - **index**: defines that the field in question is an index.
 
-## Supported Field Types
+### Supported Field Types
 CMMV supports a variety of field types:
 - **Basic Types**: `string`, `boolean`, `int`, `float`, `double`, `bytes`, `uuid`
 - **Numeric Types**: `int32`, `int64`, `uint32`, `uint64`, `sint32`, `sint64`, `fixed32`, `fixed64`, `sfixed32`, `sfixed64`
@@ -59,6 +59,20 @@ CMMV supports a variety of field types:
 - **Date and Time Types**: `date`, `time`, `timestamp`
 
 When the application starts, the system automatically generates controllers, services, and generic entities based on the contract definitions. This process simplifies development by ensuring that common components like CRUD operations are pre-built and ready to use. Each entity and service is created dynamically to match the contract specifications, allowing the developer to focus on custom logic without having to manually define the basic structures. This auto-generation enhances efficiency and consistency throughout the application.
+
+## @ContractMessage
+
+The ``@ContractMessage`` decorator, introduced in version 0.9, allows the explicit definition of structured messages within contracts. These messages act as DTOs (Data Transfer Objects) that specify the required data structures for both RPC and RESTful requests, enabling more efficient and secure communication by transmitting only the necessary data instead of the entire contract schema.
+
+### Options
+
+* **name:** Defines the name of the message (used in generated DTOs).
+* **properties:** Specifies the fields of the message, each with:
+    * **type:** The data type (e.g., string, boolean, number).
+    * **required:** Indicates if the field is mandatory.
+    * **default: (Optional)** Specifies a default value for the field.
+
+These DTOs are integrated into generated controllers and gateways, ensuring consistency across the application while simplifying validation and data management.
 
 ## HTTP Module
 
