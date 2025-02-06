@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 0.9
+## Version 0.8.8
 January 24, 2025
 
 ### Critical Fixes

@@ -50,5 +50,5 @@ Considering all these factors, I created CMMV (Contract-Model-Model-View). Initi
 
 After considering these factors, I created CMMV (Contract-Model-Model-View). My goal was not to compete with or replace any of the mentioned tools. All the technologies I’ve mentioned are of excellent quality and come highly recommended. They have large communities and are suitable for most projects. However, I had unique challenges in my projects, particularly around handling high volumes of traffic and the need for the best possible SEO performance. Despite my best efforts with my previous stack, the results were still not satisfactory for my specific needs. CMMV was born out of this necessity to address these exceptional requirements.
 
-André Ferreira (CEO)
+André Ferreira
 
