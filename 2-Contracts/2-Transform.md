@@ -91,3 +91,39 @@ If we remove the ``exclude: true`` option for password, it will still be hashed 
 ```
 
 In this case, the ``transform`` function is applied, and the password is hashed, but it is not excluded from the output anymore. The ``toClassOnly: true`` ensures the transformation is only applied when converting to a class.
+
+## toPlain
+
+Starting from version 0.9, the ``@ContractField`` decorator now supports the ``toPlain`` parameter, which allows you to revert the transformation applied in the ``transform`` function when serializing the object for output. This feature is particularly useful for maintaining compatibility with relational databases that do not support object fields natively. Instead of creating relational tables and performing complex JOIN operations, data can now be stored as strings and seamlessly converted back to objects when retrieved.
+
+Consider the following contract field definition:
+
+```typescript
+@ContractField({
+    protoType: 'string',
+    defaultValue: '"[]"',
+    objectType: 'string',
+    transform: ({ value }) => JSON.stringify(value),
+    toPlain: ({ value }) => (value ? JSON.parse(value) : []),
+})
+groups: Array<string>;
+```
+
+Generated Model:
+
+With the new ``toPlain`` feature, the generated TypeScript model will include the following decorators:
+
+```typescript
+@Expose()
+@Transform(({ value }) => JSON.stringify(value), { toClassOnly: true })
+@Transform(({ value }) => (value ? JSON.parse(value) : []), { toPlainOnly: true })
+groups: string = "[]";
+```
+
+* **Compatibility with relational databases:** Storing arrays or objects as JSON strings eliminates the need for additional tables and complex queries.
+
+* **Seamless transformation during serialization:** When serializing the object for output, the toPlain transformation ensures that the stored JSON string is converted back to its original format.
+
+* **Simplified data management:** No additional processing is required when retrieving the data, as the transformation is handled automatically.
+
+This feature ensures that applications can handle complex data structures efficiently without compromising compatibility with relational databases.

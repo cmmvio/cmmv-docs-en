@@ -25,7 +25,7 @@ This will start an interactive prompt asking for your project preferences, such 
 * Choose the View configuration (Reactivity, Vue3, or Vue3 + TailwindCSS)
 * Enable ESLint, Prettier, and Vitest
 
-## Using ``pnpm dlx``
+## Using
 
 If you don't want to install the CLI globally, use ``pnpm dlx`` to execute it directly:
 

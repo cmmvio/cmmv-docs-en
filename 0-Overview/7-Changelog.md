@@ -1,6 +1,67 @@
 # Changelog
 
-## Version 0.8.7 (January 22, 2025)
+## Version 0.8.8
+January 24, 2025
+
+### Critical Fixes
+
+- **Entity Generation Fixes in `@cmmv/repository`:**  
+  Resolved issues related to the generation of entities, specifically addressing cases involving serialized objects to ensure correct schema definitions and data integrity.
+
+- **Transformation Handling with `toPlain`:**  
+  Introduced the `toPlain` parameter to revert transformations applied via `transform` when serializing objects for transmission via RPC or REST, ensuring accurate data representation.
+
+### Additions
+
+- **Custom Index Support in Contracts:**  
+  Added the ability to define custom indexes directly in the contract using the `index` parameter, allowing for complex multi-field indexes with advanced TypeORM options such as `unique`, `spatial`, `fulltext`, and more.
+
+- **Extended Indexing in `@cmmv/repository`:**  
+  Updated the repository module to support and correctly apply custom index definitions from contracts, enhancing query performance and data organization.
+
+- **New `@ContractMessage` Decorator:**  
+  Introduced the `@ContractMessage` decorator, enabling developers to define structured data messages within contracts, aligning with Protobuf concepts and standardizing DTOs for request and response handling.
+
+- **New `@ContractService` Decorator:**  
+  Added the `@ContractService` decorator to facilitate the definition of custom functions within contracts, providing a structured approach to handle custom request/response flows.
+
+- **Automatic DTO and Interface Generation:**  
+  Implemented automatic generation of DTOs and TypeScript interfaces based on contract messages, streamlining the development process and ensuring consistency across services.
+
+- **Boilerplate Generation for Custom Functions:**  
+  The system now generates boilerplate code for implementing custom functions within controllers and gateways, simplifying integration and reducing manual effort.
+
+### Improvements
+
+- **Enhanced Data Handling in RPC and REST:**  
+  The introduction of `toPlain` improves data serialization, providing flexibility in handling transformations and ensuring compatibility with different transport layers.
+
+- **Optimized Indexing Logic in Repository:**  
+  Improved the logic for applying custom indexes in the repository, enhancing performance and reducing potential database query overhead.
+
+- **Standardized Request and Response Structures:**  
+  With the introduction of `@ContractMessage` and `@ContractService`, applications now have a consistent and maintainable way to define request and response structures.
+
+### Recommendations
+
+- **Update Contracts for Indexing:**  
+  Leverage the new indexing capabilities by defining custom indexes in contracts for optimized database operations.
+
+- **Implement Structured Custom Functions:**  
+  Utilize the new decorators to standardize custom function implementations within contracts for better maintainability and scalability.
+
+- **Review Serialization Strategies:**  
+  Ensure correct usage of the `toPlain` parameter to maintain data integrity during serialization for API responses.
+
+### Updates
+
+- **Documentation Overhaul:**  
+  The documentation has been updated to reflect the new features, including examples and guidelines for using `@ContractMessage`, `@ContractService`, and custom indexing options.
+
+By updating to version `0.9`, developers can take advantage of powerful new features, improved indexing support, and a more efficient and structured approach to handling contract-based data processing.
+
+## Version 0.8.7 
+January 22, 2025
 
 ### Critical Fixes
 
@@ -57,7 +118,8 @@
 - **Documentation Refresh**:  
   The documentation has been updated to reflect recent changes, providing clear guidelines on new features and improvements.
 
-## Version 0.8.0 (December 10, 2024)
+## Version 0.8.0
+December 10, 2024
 
 ### Critical Fixes
 
@@ -103,7 +165,8 @@
   Updated documentation to reflect the changes and provide guidance on using new features and best practices.
 
 
-## Version 0.7.5 (December 10, 2024)
+## Version 0.7.5
+December 10, 2024
 
 ### Additions
 
@@ -151,7 +214,8 @@
 - **Documentation**:  
   Revised and expanded documentation to reflect the new features, removals, and recommended practices.
 
-## Version 0.6.0 (November 26, 2024)
+## Version 0.6.0
+November 26, 2024
 
 ### New Features
 
@@ -176,7 +240,8 @@
 
 - Plan to integrate schema processing during the application's startup to improve the usability of `fast-json-stringify` without performance degradation.
 
-## Version 0.5.5 (November 16, 2024)
+## Version 0.5.5
+November 16, 2024
 
 ### New Features
 
@@ -211,7 +276,8 @@
 - Updated dependencies across the framework, ensuring compatibility with the latest ecosystem versions and tools.
 
 
-## Version 0.5.0 (November 5, 2024)
+## Version 0.5.0
+November 5, 2024
 
 ### **Added**
 - **Vue 3 Support**: Full implementation of Vue 3, configurable via `.cmmv.config.js`, enabling usage of Vue 3 syntax. Integrated SSR configurations for optimized performance.
@@ -226,7 +292,8 @@
 - **Improved View Rendering**: Optimized the view rendering system with HTML minification and inline script extraction to enhance performance.
 - **Enhanced Error Handling**: Improved error handling to ensure proper logging of failures with more informative error messages.
 
-## Version 0.4.0 (October 15, 2024)
+## Version 0.4.0 
+October 15, 2024
 
 ### **Added**
 - **RPC Support with Protobuf**: Introduced integration for Protobuf to enable binary communication through WebSocket, enhancing real-time capabilities.
@@ -245,7 +312,8 @@
 - Resolved issues with contract validation during application startup.
 - Fixed database synchronization bugs for SQLite and MongoDB configurations.
 
-## Version 0.3.5 (September 28, 2024)
+## Version 0.3.5 
+September 28, 2024
 
 ### **Features**
 - **Contract Generator**: Automates the creation of contracts between server and client, ensuring consistent API interfaces and reducing manual coding efforts.

@@ -4,7 +4,7 @@ Starting from **version 8.5**, CMMV introduces the `compile` function, which all
 
 This feature is particularly useful in scenarios where you want to pre-compile all necessary files without actually running an HTTP or RPC application.
 
-## When to Use `Application.compile`
+## When to Use
 
 You should use `Application.compile` when:
 
@@ -23,8 +23,6 @@ import { ProtobufModule } from '@cmmv/protobuf';
 import { WSModule } from '@cmmv/ws';
 import { ViewModule } from '@cmmv/view';
 import { RepositoryModule, Repository } from '@cmmv/repository';
-import { CacheModule, CacheService } from '@cmmv/cache';
-import { SchedulingModule, SchedulingService } from '@cmmv/scheduling';
 import { AuthModule } from '@cmmv/auth';
 
 // Contracts
@@ -37,11 +35,9 @@ Application.compile({
         WSModule,
         ViewModule,
         RepositoryModule,
-        CacheModule,
-        SchedulingModule,
         AuthModule,
     ],
-    services: [Repository, CacheService, SchedulingService],
+    services: [Repository],
     contracts: [TasksContract],
 });
 ```
@@ -49,7 +45,7 @@ Application.compile({
 ### Explanation
 
 - **modules:** A list of application modules, such as HTTP, WebSockets, Protobuf, repository, caching, and authentication.
-- **services:** The core services used within the application, such as `Repository`, `CacheService`, and `SchedulingService`.
+- **services:** The core services used within the application, such as `Repository`.
 - **contracts:** Contracts that define the business logic of the application, such as `TasksContract`.
 
 ## Added Script
@@ -61,7 +57,6 @@ To compile without running an actual HTTP or RPC server, run the following comma
 ```bash
 ./tools/cleanupPackages.sh && 
     pnpm run clean && 
-    set "VITE_CJS_TRACE=true" && 
     NODE_ENV=dev node -r @swc-node/register ./src/compile.ts
 ```
 
@@ -69,11 +64,10 @@ To compile without running an actual HTTP or RPC server, run the following comma
 
 1. **\`./tools/cleanupPackages.sh\`** – Cleans up unused or outdated package dependencies.
 2. **\`pnpm run clean\`** – Removes temporary files and builds directories.
-3. **\`set "VITE_CJS_TRACE=true"\`** – Enables tracing for debugging purposes.
 4. **\`NODE_ENV=dev\`** – Sets the environment to development mode.
 5. **\`node -r @swc-node/register ./src/compile.ts\`** – Compiles the application with SWC for faster execution.
 
-## Running the Compilation Process
+## Running
 
 To trigger the compilation process, you can run the following command:
 
