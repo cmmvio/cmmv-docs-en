@@ -82,7 +82,7 @@ Application.create({
 * **ProtobufModule:** Defines message structures with Protocol Buffers for communication.
 * **WSModule:** Manages WebSocket connections, utilizing Protobuf messages for efficient data transmission.
 
-Settings ``.cmmv.config.js``
+Settings ``.cmmv.config.cjs``
 
 ```typescript
 module.exports = {

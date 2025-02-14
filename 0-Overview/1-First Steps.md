@@ -70,7 +70,7 @@ Application.create({
 });
 ```
 
-It is possible to perform configurations through the ``.cmmv.config.js`` file without having to change the application source code, even in the future we will provide other HTTP server modules.
+It is possible to perform configurations through the ``.cmmv.config.cjs`` file without having to change the application source code, even in the future we will provide other HTTP server modules.
 
 The default directories that come with the project are the following:
 ```
@@ -115,7 +115,7 @@ The default directories that come with the project are the following:
 
 CMMV's greatest strength lies in its ability to **automatically generate** code based on contracts. When starting the application, the system checks the `contracts` directory and, depending on the installed modules, automatically generates the following parts:
 
-- **Controllers, Entities, Models and Services**: Based on the defined contracts, the controllers, entities, models and services required for the application are created. If the `repository` module is present, the entities and models will be generated in TypeORM format and the connection to the database will be configured according to the information in the `.cmmv.config.js` file.
+- **Controllers, Entities, Models and Services**: Based on the defined contracts, the controllers, entities, models and services required for the application are created. If the `repository` module is present, the entities and models will be generated in TypeORM format and the connection to the database will be configured according to the information in the `.cmmv.config.cjs` file.
 
 - **RPC support with Protobuf**: If the `protobuf` module is present, `.proto` contracts will be automatically generated for RPC (Remote Procedure Call) communication. This communication is done through a WebSocket adapter, integrating the HTTP and WebSocket server on the same port, facilitating real-time communication.
 

@@ -1,6 +1,6 @@
 # Settings
 
-The system configuration for a CMMV project is managed through a ``.cmmv.config.js`` file in the root directory. This file defines various settings, such as:
+The system configuration for a CMMV project is managed through a ``.cmmv.config.cjs`` file in the root directory. This file defines various settings, such as:
 
 * **Server Settings:** Configures the host and port for the application.
 * **I18n:** Manages internationalization with locale files and default languages.
@@ -79,7 +79,7 @@ Config.assign({
 });
 ```
 
-With ``Config.assign()``, you can flexibly modify settings such as server configuration, internationalization, and more, without hardcoding them directly in ``.cmmv.config.js``.
+With ``Config.assign()``, you can flexibly modify settings such as server configuration, internationalization, and more, without hardcoding them directly in ``.cmmv.config.cjs``.
 
 ## API
 
@@ -109,11 +109,11 @@ Config.assign({
 });
 ```
 
-Each module in the CMMV system has its own set of configurations that can be added to the central configuration file (.cmmv.config.js). This allows developers to customize the behavior and features of the modules they are using. Because different modules may require specific settings, it's essential to review each module's documentation carefully to understand the available configuration options and how they integrate with the core system. This ensures optimal setup and use of advanced functionalities such as RPC, authentication, caching, and more.
+Each module in the CMMV system has its own set of configurations that can be added to the central configuration file (.cmmv.config.cjs). This allows developers to customize the behavior and features of the modules they are using. Because different modules may require specific settings, it's essential to review each module's documentation carefully to understand the available configuration options and how they integrate with the core system. This ensures optimal setup and use of advanced functionalities such as RPC, authentication, caching, and more.
 
 ## Schema Validation
 
-CMMV introduces a schema-based validation system to ensure that all configurations defined in ``.cmmv.config.js`` adhere to the expected structure and types. This validation provides robust error handling and guarantees that your application operates with correctly defined settings.
+CMMV introduces a schema-based validation system to ensure that all configurations defined in ``.cmmv.config.cjs`` adhere to the expected structure and types. This validation provides robust error handling and guarantees that your application operates with correctly defined settings.
 
 Each module can define its own schema using the ConfigSchema interface. This schema specifies the required fields, their types, default values, and nested properties when applicable.
 
@@ -186,7 +186,7 @@ The schema supports the following types:
 ### How Validation Works
 <br/>
 
-* **Load Configurations:** The ``Config.loadConfig()`` method loads the ``.cmmv.config.js`` file.
+* **Load Configurations:** The ``Config.loadConfig()`` method loads the ``.cmmv.config.cjs`` file.
 * **Validate Against Schemas:** Each module registers its schema, and the ``Config.validateConfigs()`` method ensures all configurations match their respective schemas.
 * **Throw Errors for Invalid Configurations:** If any configuration value does not match the schema, an error is thrown with details about the invalid key and the expected type.
 

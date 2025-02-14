@@ -237,7 +237,7 @@ export class TasksContract extends AbstractContract {
 * **ttl:** The time-to-live for cached data. After 300 seconds, the cache entry will expire.
 * **compress:** Enables compression of the data before storing it in the cache to reduce memory usage.
 
-If you need more advanced caching strategies or custom store integrations, you can customize the cache settings in the ``.cmmv.config.js`` file or extend the existing cache functionalities within your project. For example, you could add custom cache strategies like memory caching, database caching, or even multi-level caching.
+If you need more advanced caching strategies or custom store integrations, you can customize the cache settings in the ``.cmmv.config.cjs`` file or extend the existing cache functionalities within your project. For example, you could add custom cache strategies like memory caching, database caching, or even multi-level caching.
 
 ## Controllers 
 

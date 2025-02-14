@@ -52,7 +52,7 @@ $ pnpm add oracledb
 $ pnpm add mongodb
 ```
 
-Once you install the module and the corresponding database driver, you can configure your database connection in the ``.cmmv.config.js`` file. TypeORM will automatically use the appropriate driver based on the configuration.
+Once you install the module and the corresponding database driver, you can configure your database connection in the ``.cmmv.config.cjs`` file. TypeORM will automatically use the appropriate driver based on the configuration.
 
 ## Purpose
 
@@ -194,7 +194,7 @@ The ``@cmmv/repository`` module significantly simplifies database interaction by
 
 ## Settings
 
-To ensure that the ``@cmmv/repository`` module works correctly with your project, you need to define the database configurations in a ``.cmmv.config.js`` file. This file serves as the central configuration for your project, including the repository settings for database interaction.
+To ensure that the ``@cmmv/repository`` module works correctly with your project, you need to define the database configurations in a ``.cmmv.config.cjs`` file. This file serves as the central configuration for your project, including the repository settings for database interaction.
 
 ```javascript
 module.exports = {
@@ -219,7 +219,7 @@ For a more detailed list of all available configurations, please visit the [Type
 * **username and password:** Credentials for connecting to the database (for database types that require authentication).
 * **host and port:** For specifying the host and port for databases like PostgreSQL, MySQL, etc.
 
-To properly configure the ``@cmmv/repository`` module, you need to specify your database connection settings in the ``.cmmv.config.js`` file. The example provided shows a typical setup using SQLite, but you can adjust the configuration for other databases like PostgreSQL or MySQL. For further details on possible configurations, refer to the [TypeORM documentation](https://typeorm.io).
+To properly configure the ``@cmmv/repository`` module, you need to specify your database connection settings in the ``.cmmv.config.cjs`` file. The example provided shows a typical setup using SQLite, but you can adjust the configuration for other databases like PostgreSQL or MySQL. For further details on possible configurations, refer to the [TypeORM documentation](https://typeorm.io).
 
 ## Custom Index
 

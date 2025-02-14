@@ -1,10 +1,10 @@
 # Headers
 
-In CMMV, you can configure response headers to enhance security, define metadata, or customize the behavior of your web application. This can be achieved in two ways: using the ``.cmmv.config.js`` file located in the root of your project or by adding specific configurations directly into the template files for more granular control.
+In CMMV, you can configure response headers to enhance security, define metadata, or customize the behavior of your web application. This can be achieved in two ways: using the ``.cmmv.config.cjs`` file located in the root of your project or by adding specific configurations directly into the template files for more granular control.
 
-The ``.cmmv.config.js`` file serves as the global configuration file for your CMMV project. You can set default headers that will apply to all responses from your application by defining the headers object in this file.
+The ``.cmmv.config.cjs`` file serves as the global configuration file for your CMMV project. You can set default headers that will apply to all responses from your application by defining the headers object in this file.
 
-For example, to configure a Content-Security-Policy and other security-related headers, your ``.cmmv.config.js`` might look like this:
+For example, to configure a Content-Security-Policy and other security-related headers, your ``.cmmv.config.cjs`` might look like this:
 
 ```typescript
 module.exports = {
@@ -155,9 +155,9 @@ Compresses the HTTP responses using Gzip or Brotli to reduce the size of the res
 * **Content-Encoding:** Specifies the type of compression used (e.g., gzip, br).
 * **Vary:** Instructs the browser to vary the response based on the Accept-Encoding header, which allows the server to return different content based on the client's compression capabilities.
 
-The ``.cmmv.config.js`` file in the root of the project allows developers to define and customize security policies, session management, CORS settings, and compression options. These configurations will automatically modify the response headers to meet security and performance requirements.
+The ``.cmmv.config.cjs`` file in the root of the project allows developers to define and customize security policies, session management, CORS settings, and compression options. These configurations will automatically modify the response headers to meet security and performance requirements.
 
-Example ``.cmmv.config.js`` Configuration:
+Example ``.cmmv.config.cjs`` Configuration:
 ```javascript
 module.exports = {
     headers: {
@@ -224,4 +224,4 @@ export default {
 </script>
 ```
 
-The ``@cmmv/http`` module automates essential optimizations to HTTP headers, ensuring security and performance through compression, session management, and protection against common web attacks via middleware like ``cors``, ``helmet``, and ``compression``. This is supplemented by custom configurations defined in the ``.cmmv.config.js`` file and template-specific header controls, making the CMMV platform a secure and efficient foundation for web applications.
+The ``@cmmv/http`` module automates essential optimizations to HTTP headers, ensuring security and performance through compression, session management, and protection against common web attacks via middleware like ``cors``, ``helmet``, and ``compression``. This is supplemented by custom configurations defined in the ``.cmmv.config.cjs`` file and template-specific header controls, making the CMMV platform a secure and efficient foundation for web applications.

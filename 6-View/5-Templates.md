@@ -22,7 +22,7 @@ A master page template defines the base HTML layout of your views and is stored 
 * **``<headers/>`` Tag:**
 
 * This tag is used to inject all processed headers from the ``@cmmv/view`` module, which may include metadata, stylesheets, and other elements configured within your views or globally.
-* These headers come from your ``.cmmv.config.js`` or from custom settings defined in each view.
+* These headers come from your ``.cmmv.config.cjs`` or from custom settings defined in each view.
 
 * **``<slot/>`` Tag:**
 
@@ -31,7 +31,7 @@ A master page template defines the base HTML layout of your views and is stored 
 
 * **``<scripts/>`` Tag:**
 
-This tag handles the inclusion of JavaScript files configured in your ``.cmmv.config.js`` or directly within the view itself.
+This tag handles the inclusion of JavaScript files configured in your ``.cmmv.config.cjs`` or directly within the view itself.
 This ensures that all required client-side scripts are included in the final rendering of the page.
 
 * **Other Custom Tags:**
@@ -76,9 +76,9 @@ export default {
 </script>
 ```
 
-The ``.cmmv.config.js`` file allows you to manage global JavaScript and stylesheets that should be included in your views. These will be injected into the ``<scripts/>`` and ``<headers/>`` tags of your master templates.
+The ``.cmmv.config.cjs`` file allows you to manage global JavaScript and stylesheets that should be included in your views. These will be injected into the ``<scripts/>`` and ``<headers/>`` tags of your master templates.
 
-**Example ``.cmmv.config.js:``**
+**Example ``.cmmv.config.cjs:``**
 
 ```javascript
 module.exports = {
