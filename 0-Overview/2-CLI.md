@@ -6,7 +6,7 @@ The CMMV CLI simplifies project initialization by providing an interactive way t
 
 Install the CLI Globally: To use the CLI globally on your system, install it using ``pnpm``:
 
-```bash 
+```bash
 $ pnpm add -g @cmmv/cli
 ```
 
@@ -19,10 +19,11 @@ $ cmmv create <project-name>
 This will start an interactive prompt asking for your project preferences, such as:
 
 * Whether to enable Vite Middleware
-* Use RPC (WebSocket)
+* Use RPC (WebSocket + Protobuf)
 * Enable the Cache module
-* Select the repository type (SQLite, MongoDB, PostgreSQL, MySQL)
-* Choose the View configuration (Reactivity, Vue3, or Vue3 + TailwindCSS)
+* Select the repository type (SQLite, MongoDB, PostgreSQL, MySQL, MSSQL, Oracle)
+* Select the cache type (Redis, Memcached, MongoDB, File System)
+* Select the queue type (Redis, RabbitMQ, Kafka)
 * Enable ESLint, Prettier, and Vitest
 
 ## Using
@@ -35,12 +36,62 @@ $ pnpm dlx @cmmv/cli@latest create <project-name>
 
 This ensures you always use the latest version of the CLI without requiring a global installation.
 
+## Changes in Version 5.9
+
+The CMMV CLI has been refactored, introducing new commands and streamlining project workflows. Updating from previous versions is highly recommended.
+
+<div style="
+    background-color: #DBEAFE;
+    border-left: 4px solid #3B82F6;
+    color: #1E40AF;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    margin: 1.5rem 0;
+">
+    <p style="font-weight: bold; margin-bottom: 0.5rem;">Notice</p>
+    <p>
+        Starting from version <strong>5.9</strong>, the <strong>@cmmv/cli</strong> has been fully refactored, introducing new commands and streamlining project workflows.
+        It is highly recommended to update to this version for enhanced performance and usability.
+    </p>
+    <p>
+        The CLI now includes built-in support for <strong>ESLint</strong>, <strong>module releases</strong>, and an improved <strong>build system</strong> with both <strong>ESM</strong> and <strong>CJS</strong> support.
+        Additionally, <strong>hot reload</strong> for development and a new <strong>run command</strong> for executing scripts are now available.
+    </p>
+</div>
+
+### New Features
+
+* Integrated ESLint: No need for separate dependencies—run `$ cmmv lint`.
+* Module Release Automation: `$ cmmv release` now handles all dependencies automatically.
+* Improved Build System: Supports ESM and CJS builds: `$ cmmv build`
+* Enhanced Development Mode:
+    * Built-in watch and debug without `nodemon`
+    * Hot reload support using `$ cmmv dev`
+    * Example configuration:
+
+```json
+"dev": {
+    "watch": ["src", "docs"],
+    "ignore": ["**/*.spec.ts", "src/app.module.ts", "docs/**/*.html"]
+}
+```
+* Production Start Command: `$ cmmv start`
+* Script Execution: `$ cmmv run ./src/<script>.ts`
+* Performance Boost:
+    * `@swc-node/register` replaces `ts-node` for dev and run.
+    * `tsc` remains the default for production builds.
+
+* ESLint Configuration:
+    * Uses ESLint 9.20 with Prettier.
+    * Configurable via `eslint.config.cjs` (or `eslint.config.ts` for ESM projects).
+
 ## Generated Project Structure
 
 The CLI generates a structured project folder with necessary files and directories based on your preferences. Below is an example structure:
 
 ```
 .
+├── .generated/
 ├── public/
 │   ├── assets/
 │   │   └── protobuf.min.js (if RPC is enabled)
@@ -48,24 +99,16 @@ The CLI generates a structured project folder with necessary files and directori
 │   ├── templates/
 │   └── views/
 ├── src/
-│   ├── contracts/
-│   ├── controllers/
-│   ├── entities/
-│   ├── models/
-│   ├── modules/
-│   ├── services/
-│   ├── locale/
+│   ├── app.controller.ts
 │   ├── app.module.ts
-│   ├── server.ts
-│   └── client.ts (if Vite is enabled)
-├── node_modules/
-├── index.html (if Vite is enabled)
-├── tailwind.config.js (if TailwindCSS is enabled)
+│   ├── app.service.ts
+│   └── main.ts
+├── tests/
+│   ├── app.controller.spec.ts
+│   ├── app.module.spec.ts
+│   └── app.service.spec.ts
 ├── tsconfig.json
-├── tsconfig.client.json (if Vite is enabled)
-├── tsconfig.vue.json (if Vue3 or Vue3 + TailwindCSS is enabled)
-├── vite.config.js (if Vite is enabled)
-├── vitest.config.ts (if Vitest is enabled)
+├── eslint.config.cjs
 ├── .cmmv.config.cjs
 ├── package.json
 ├── .gitignore
@@ -77,8 +120,6 @@ The CLI generates a structured project folder with necessary files and directori
 * ``package.json``: Includes necessary dependencies and scripts based on your selected options.
 * ``tsconfig.json``: References for TypeScript configurations.
 * ``.gitignore``, ``.npmignore``, ``.prettierignore``, ``.prettierrc``, ``.swcrc``: Pre-configured files for development standards.
-* ``vite.config.js``: Vite configuration (if enabled).
-* ``tailwind.config.js`` and ``src/tailwind.css``: TailwindCSS configuration (if enabled).
 
 ## Available Scripts
 
@@ -106,7 +147,13 @@ Run Tests (if Vitest is enabled):
 $ pnpm test
 ```
 
-## Module 
+Run ESLint:
+
+```bash
+$ pnpm lint
+```
+
+## Module
 
 The CMMV CLI now includes a ``module`` command to simplify the creation of new modules within an existing CMMV project. Modules help organize your application into reusable and feature-specific units. Below is the documentation for the ``module`` command.
 
@@ -119,14 +166,12 @@ $ cmmv module <module-name>
 ```bash
 module/
 ├── src/
-│   ├── index.ts                # Main entry point for the module
-├── scripts/
-│   └── release.js (if release is enabled)
+│   ├── main.ts
 ├── tests/
-│   └── index.test.ts (if vitest is enabled)
+│   └── main.spec.ts
 ├── .gitignore
 ├── .npmignore
-├── .swcrc
+├── eslint.config.cjs
 ├── tsconfig.json
 ├── tsconfig.cjs.json
 ├── tsconfig.esm.json
@@ -147,17 +192,14 @@ The generated package.json includes essential metadata and scripts for the modul
         "access": "public"
     },
     "engines": {
-        "node": ">=18.18.0 || >=20.0.0"
+        "node": ">=20.0.0"
     },
     "scripts": {
-        "build:cjs": "tsc --project tsconfig.cjs.json",
-        "build:esm": "tsc --project tsconfig.esm.json",
-        "build": "npm run build:cjs && npm run build:esm",
+        "build": "cmmv build",
+        "lint": "cmmv lint",
+        "release": "cmmv release",
         "test": "vitest",
         "prepare": "husky install",
-        "lint": "pnpm run lint:spec",
-        "lint:fix": "pnpm run lint:spec -- --fix",
-        "release": "node scripts/release.js",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
     },
     "devDependencies": {

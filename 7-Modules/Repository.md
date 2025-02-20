@@ -7,7 +7,7 @@ The ``@cmmv/repository`` module is designed to work alongside the ``@cmmv/core``
 To use the ``@cmmv/repository`` module in your project, you can install it via npm:
 
 ```bash
-$ pnpm add @cmmv/repository typeorm
+$ pnpm add @cmmv/repository
 ```
 
 In addition to installing the ``@cmmv/repository`` module, depending on the database type you are using, you will need to install the respective database driver.

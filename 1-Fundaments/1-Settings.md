@@ -12,6 +12,8 @@ The system configuration for a CMMV project is managed through a ``.cmmv.config.
 Modules can extend this configuration based on the application's requirements.
 
 ```typescript
+require('dotenv').config();
+
 module.exports = {
     server: {
         host: "0.0.0.0",

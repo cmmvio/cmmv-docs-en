@@ -5,8 +5,7 @@ The ``@cmmv/cache`` module integrates with ``cache-manager`` to provide in-memor
 To install the ``@cmmv/cache`` module, use npm:
 
 ```bash
-$ pnpm add @cmmv/cache cache-manager
-$ pnpm add -D @types/cache-manager
+$ pnpm add @cmmv/cache
 ```
 
 If you're planning to use Redis or other stores, you'll need to install the appropriate package based on the cache store you intend to use.

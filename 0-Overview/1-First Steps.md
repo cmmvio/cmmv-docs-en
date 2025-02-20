@@ -10,7 +10,7 @@ Whether you are an experienced developer or a programming newbie, CMMV empowers 
 
 ## Prerequisites
 
-To run CMMV it will be necessary to have ``Node.js (version >= 18.0)`` installed in your operating system.
+To run CMMV it will be necessary to have ``Node.js (version >= 20.0)`` installed in your operating system.
 
 ## Setup with CLI
 
@@ -29,7 +29,7 @@ This command will walk you through a guided setup process, asking about your pre
 If you prefer to set up the project manually, you can still install the necessary modules individually:
 
 ```bash
-$ pnpm add @cmmv/core @cmmv/http @cmmv/view rxjs reflect-metadata class-validator class-transformer fast-json-stringify
+$ pnpm add @cmmv/core @cmmv/http @cmmv/view reflect-metadata
 ```
 
 ## Structure
@@ -56,7 +56,7 @@ import { RepositoryModule, Repository } from "@cmmv/repository";
 import { ApplicationModule } from "./app.module";
 
 Application.create({
-    httpAdapter: DefaultAdapter,    
+    httpAdapter: DefaultAdapter,
     wsAdapter: WSAdapter,
     modules: [
         DefaultHTTPModule,
@@ -75,6 +75,12 @@ It is possible to perform configurations through the ``.cmmv.config.cjs`` file w
 The default directories that come with the project are the following:
 ```
 .
+└── .generated/
+    ├── controllers/
+    ├── gateways/
+    ├── protos/
+    ├── services/
+    └── app.module.ts
 └── public/
     ├── assets/
     ├── templates/
@@ -129,7 +135,7 @@ The recommendation regarding static files is to always use the CDN integration f
 
 ## Dev mode
 
-To start the application in development mode you can use the following command. 
+To start the application in development mode you can use the following command.
 
 ```bash
 $ pnpm dev
