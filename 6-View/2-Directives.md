@@ -112,7 +112,7 @@ Result (For English Locale)
 
 **Configuration**
 
-In the ``.cmmv.config.js`` file, you can configure the i18n settings to define the locale file path and the default language for your application:
+In the ``.cmmv.config.cjs`` file, you can configure the i18n settings to define the locale file path and the default language for your application:
 
 ```typescript
 module.exports = {

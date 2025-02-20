@@ -5,8 +5,7 @@ The ``@cmmv/cache`` module integrates with ``cache-manager`` to provide in-memor
 To install the ``@cmmv/cache`` module, use npm:
 
 ```bash
-$ pnpm add @cmmv/cache cache-manager
-$ pnpm add -D @types/cache-manager
+$ pnpm add @cmmv/cache
 ```
 
 If you're planning to use Redis or other stores, you'll need to install the appropriate package based on the cache store you intend to use.
@@ -237,7 +236,7 @@ export class TasksContract extends AbstractContract {
 * **ttl:** The time-to-live for cached data. After 300 seconds, the cache entry will expire.
 * **compress:** Enables compression of the data before storing it in the cache to reduce memory usage.
 
-If you need more advanced caching strategies or custom store integrations, you can customize the cache settings in the ``.cmmv.config.js`` file or extend the existing cache functionalities within your project. For example, you could add custom cache strategies like memory caching, database caching, or even multi-level caching.
+If you need more advanced caching strategies or custom store integrations, you can customize the cache settings in the ``.cmmv.config.cjs`` file or extend the existing cache functionalities within your project. For example, you could add custom cache strategies like memory caching, database caching, or even multi-level caching.
 
 ## Controllers 
 

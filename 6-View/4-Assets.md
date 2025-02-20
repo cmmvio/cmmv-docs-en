@@ -8,7 +8,7 @@ If you choose not to use a CDN, place all your static files under the ``/public`
 
 By default, the application will generate complementary files, resulting in a final bundle that is necessary if you are using RPC and frontend reactivity. This bundle will be created as ``/assets/bundle.min.js`` and must be included in your HTML or template files to ensure the frontend functions correctly.
 
-**Example ``.cmmv.config.js`` Configuration for Assets:**
+**Example ``.cmmv.config.cjs`` Configuration for Assets:**
 
 ```javascript
 module.exports = {

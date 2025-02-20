@@ -117,7 +117,7 @@ The ability to serve pre-rendered content, while maintaining the flexibility of 
 
 ## Settings
 
-The ``@cmmv/view`` module in CMMV allows for flexible customization through the ``.cmmv.config.js`` file. Below are the available configurations that you can use to fine-tune the behavior of the view engine, internationalization (i18n), meta tags for SEO, security headers, and JavaScript resources.
+The ``@cmmv/view`` module in CMMV allows for flexible customization through the ``.cmmv.config.cjs`` file. Below are the available configurations that you can use to fine-tune the behavior of the view engine, internationalization (i18n), meta tags for SEO, security headers, and JavaScript resources.
 
 | Configuration       | Description                                                                                  | Example                                                    |
 |--------------------|----------------------------------------------------------------------------------------------|------------------------------------------------------------|

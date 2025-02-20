@@ -16,12 +16,12 @@ The ``@cmmv/elastic`` module provides a seamless integration with [Elastic](http
 To install the ``@cmmv/elastic`` module:
 
 ```bash
-$ pnpm add @cmmv/elastic @elastic/elasticsearch
+$ pnpm add @cmmv/elastic
 ```
 
 ## Configuration
 
-The ``@cmmv/elastic`` module requires an Elasticsearch configuration, which can be defined in the ``.cmmv.config.js`` file:
+The ``@cmmv/elastic`` module requires an Elasticsearch configuration, which can be defined in the ``.cmmv.config.cjs`` file:
 
 ```javascript
 import * as fs from "node:fs";

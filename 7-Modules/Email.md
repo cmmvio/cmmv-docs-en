@@ -17,12 +17,12 @@ The `@cmmv/email` module provides a unified interface for sending emails in CMMV
 Install the `@cmmv/email` package via npm:
 
 ```bash
-$ pnpm add @cmmv/email nodemailer aws-sdk
+$ pnpm add @cmmv/email
 ```
 
 ## Configuration
 
-The `@cmmv/email` module requires configuration settings for SMTP or AWS SES integration. These can be set in the `.cmmv.config.js` file:
+The `@cmmv/email` module requires configuration settings for SMTP or AWS SES integration. These can be set in the `.cmmv.config.cjs` file:
 
 ```javascript
 module.exports = {

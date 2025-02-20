@@ -280,7 +280,7 @@ November 16, 2024
 November 5, 2024
 
 ### **Added**
-- **Vue 3 Support**: Full implementation of Vue 3, configurable via `.cmmv.config.js`, enabling usage of Vue 3 syntax. Integrated SSR configurations for optimized performance.
+- **Vue 3 Support**: Full implementation of Vue 3, configurable via `.cmmv.config.cjs`, enabling usage of Vue 3 syntax. Integrated SSR configurations for optimized performance.
 - **Dynamic Layout and View Loading**: Added support for dynamic loading of layouts and views, including integration with Vite to efficiently serve `.vue` files.
 - **Data Binding and Setup Configuration**: Introduced `s-setup` for configuring scripts and reactive data in views, with support for lifecycle hooks such as `mounted` and `created`.
 - **New Lifecycle Hooks**: Added `mounted` and `created` hooks in view setup scripts, providing flexibility for executing code when the view is loaded.
@@ -301,7 +301,7 @@ October 15, 2024
 - **Caching Module**: Integrated the caching module (`@cmmv/cache`) for high-performance data storage, supporting Redis and in-memory options.
 - **Repository Module**: Added support for repository-based database management with integration for TypeORM and MongoDB.
 - **Contract-Based Auto-Generation**: Controllers, entities, and services are now automatically generated from TypeScript contracts, reducing boilerplate code.
-- **Dynamic Configuration**: Added support for dynamic configuration using `.cmmv.config.js`, allowing runtime adjustments without modifying source code.
+- **Dynamic Configuration**: Added support for dynamic configuration using `.cmmv.config.cjs`, allowing runtime adjustments without modifying source code.
 
 ### **Changed**
 - **Improved CLI**: Enhanced the CLI to simplify project initialization, with customizable settings for RPC, caching, and repositories.

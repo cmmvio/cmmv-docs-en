@@ -7,7 +7,7 @@ The ``@cmmv/encryptor`` module provides a set of cryptographic utilities for CMM
 To install the ``@cmmv/encryptor`` module, use the following command:
 
 ```bash
-$ pnpm add @cmmv/encryptor bip32 bip39 bs58 elliptic tiny-secp256k1
+$ pnpm add @cmmv/encryptor
 ```
 
 ### Features

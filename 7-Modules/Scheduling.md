@@ -5,7 +5,7 @@ The ``@cmmv/scheduling`` package provides a simple way to schedule tasks in your
 To install the scheduling module, run the following command:
 
 ```bash
-$ pnpm add @cmmv/scheduling cron
+$ pnpm add @cmmv/scheduling
 ```
 
 ## Usage

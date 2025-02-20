@@ -15,7 +15,7 @@ The `@cmmv/events` module provides a robust and flexible event-driven system for
 To install the `@cmmv/events` module:
 
 ```bash
-$ pnpm add @cmmv/events eventemitter2
+$ pnpm add @cmmv/events
 ```
 
 ## Configuration

@@ -32,7 +32,7 @@ $ pnpm add ioredis
 
 ## Configuration
 
-The ``@cmmv/queue`` module requires a configuration file (``.cmmv.config.js``) to define the queue backend type and connection details.
+The ``@cmmv/queue`` module requires a configuration file (``.cmmv.config.cjs``) to define the queue backend type and connection details.
 
 ```javascript
 module.exports = {
