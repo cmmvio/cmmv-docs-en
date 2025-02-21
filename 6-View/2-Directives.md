@@ -1,16 +1,17 @@
 # Directives
 
 <div style="
-    background-color: #DBEAFE; 
-    border-left: 4px solid #3B82F6; 
-    color: #1E40AF; 
-    padding: 1rem; 
-    border-radius: 0.375rem; 
+    background-color: #DBEAFE;
+    border-left: 4px solid #3B82F6;
+    color: #1E40AF;
+    padding: 1rem;
+    border-radius: 0.375rem;
     margin: 1.5rem 0;
+    font-size: 12px;
 ">
     <p style="font-weight: bold; margin-bottom: 0.5rem;">Important Notice</p>
     <p>
-        SSR (Server-Side Rendering) directives are exclusively available for implementations using <strong>@cmmv/view</strong> as the rendering template. 
+        SSR (Server-Side Rendering) directives are exclusively available for implementations using <strong>@cmmv/view</strong> as the rendering template.
         For applications in <strong>Vue</strong> served by <strong>Vite</strong> or static files, the templates do not go through SSR functions, and the directives will not be processed during the build or runtime.
     </p>
 </div>
@@ -134,7 +135,7 @@ The ``s-if`` directive is used to conditionally render a block of content based 
     <s-else>
         <div>No records were loaded via SSR</div>
     </s-else>
-</s-if> 
+</s-if>
 ```
 
 * ``exp:`` The boolean expression to evaluate. The expression can use variables and logical operators to determine if the block should be displayed.
@@ -170,30 +171,30 @@ The ``s-for`` directive is designed to handle server-side rendering (SSR) of lis
 
 **Input Template:**
 ```html
-<s-for 
+<s-for
     c-show="todolist"
     c-for="(item, key) in todolist"
     class="todo-item"
     render-tag="div"
 >
     <div class="todo-item-content">
-        <input 
-            type="checkbox" 
-            c-model="item.checked" 
+        <input
+            type="checkbox"
+            c-model="item.checked"
             @change="UpdateTaskRequest(item)"
         ></input>
 
-        <label 
+        <label
             :class="{'todo-item-checked': item.checked}"
         >{{ item.label }}</label>
     </div>
-    
-    <button 
+
+    <button
         class="todo-btn-remove"
-        s-i18n="remove" 
+        s-i18n="remove"
         @click="DeleteTaskRequest(item.id)"
     ></button>
-</s-for> 
+</s-for>
 ```
 
 **Final Rendered Output:**
@@ -201,37 +202,37 @@ The ``s-for`` directive is designed to handle server-side rendering (SSR) of lis
 <div c-if="!loaded && !todolist">
     <div c-show="todolist" class="todo-item">
         <div class="todo-item-content">
-            <input 
-                type="checkbox" 
-                c-model="item.checked" 
+            <input
+                type="checkbox"
+                c-model="item.checked"
                 @change="UpdateTaskRequest(1)"
             >
             <label class="todo-item-checked">Task 1</label>
         </div>
-        <button 
-            class="todo-btn-remove" 
+        <button
+            class="todo-btn-remove"
             @click="DeleteTaskRequest(1)"
         >Remove</button>
     </div>
 </div>
 <div c-else>
-    <div 
-        c-show="todolist" 
-        c-for="(item, key) in todolist" 
+    <div
+        c-show="todolist"
+        c-for="(item, key) in todolist"
         class="todo-item"
     >
         <div class="todo-item-content">
-            <input 
-                type="checkbox" 
-                c-model="item.checked" 
+            <input
+                type="checkbox"
+                c-model="item.checked"
                 @change="UpdateTaskRequest(item)"
             >
-            <label 
+            <label
                 :class="{'todo-item-checked': item.checked}"
             >{{ item.label }}</label>
         </div>
-        <button 
-            class="todo-btn-remove" 
+        <button
+            class="todo-btn-remove"
             @click="DeleteTaskRequest(item.id)"
         >Remove</button>
     </div>
@@ -245,7 +246,7 @@ The ``s-for`` directive is designed to handle server-side rendering (SSR) of lis
 * **Use with Caution:** As ``s-for`` performs server-side rendering, ensure that the list and its contents are suitable for static pre-rendering. Avoid using it for highly dynamic data that changes frequently on the client side.
 By combining ``s-for`` with ``c-for``, you can leverage server-side rendering for SEO benefits while maintaining dynamic client-side updates.
 
-## Include 
+## Include
 
 The ``include`` directive allows the insertion of components or templates from other files into the main layout. This feature is useful for building modular pages, enabling the division of the layout into small, reusable blocks, which optimizes both loading performance and code maintenance.
 
@@ -257,7 +258,7 @@ The ``include`` directive is responsible for preloading components on the server
 <div>
     <!-- Include the navbar -->
     <!-- include('public/views/docs/navbar') -->
-    
+
     <!-- Include the footer -->
     <!-- include('public/views/docs/footer') -->
 </div>
@@ -297,8 +298,8 @@ export default {
                 localStorage.getItem('navbarState')
             ) || {};
 
-            this.contentData = { 
-                message: 'Dynamically loaded content.' 
+            this.contentData = {
+                message: 'Dynamically loaded content.'
             };
         }
     }
@@ -350,7 +351,7 @@ export default {
             this.navbar = JSON.parse(
                 localStorage.getItem('navbarState')
             ) || {};
-            
+
             return this.navbar;
         },
 
@@ -450,7 +451,7 @@ Below is an example of implementation of practically all the directives that wer
     <head>
         <headers/>
     </head>
-    <body scope> 
+    <body scope>
         <slot/>
         <scripts/>
     </body>
@@ -474,10 +475,10 @@ Below is an example of implementation of practically all the directives that wer
                         <i class="fa-solid fa-search"></i>
                     </div>
                     <div>
-                        <input 
-                        type="text" 
-                            class="p-1.5 pl-10 text-white bg-transparent" 
-                            placeholder="Search" 
+                        <input
+                        type="text"
+                            class="p-1.5 pl-10 text-white bg-transparent"
+                            placeholder="Search"
                         />
                     </div>
                 </div>
@@ -496,16 +497,16 @@ Below is an example of implementation of practically all the directives that wer
     </nav>
 
     <div class="max-w-8xl mx-auto flex container">
-        <div 
-            class="w-60 fixed mt-20 z-40 overflow-auto" 
-            style="height: calc(100% - 84px); background-color: #2e3035" 
+        <div
+            class="w-60 fixed mt-20 z-40 overflow-auto"
+            style="height: calc(100% - 84px); background-color: #2e3035"
             c-cloak
         >
             <!-- include('public/views/docs/navbar') -->
         </div>
 
         <div class="mt-20 ml-64 text-justify relative">
-            <div 
+            <div
                 class="lg:pl-[19.5rem] m-4 p-4 px-20 max-w-3x1 mx-auto xl:max-w-none xl:ml-0 xl:mr-[15.5rem] xl:pr-16"
                 :class="{'w-full': docs.anchors.length < 4}"
             >
@@ -516,9 +517,9 @@ Below is an example of implementation of practically all the directives that wer
                     <div c-html="docs.index">{ docs.index }</div>
 
                     <div class="absolute top-0 right-0">
-                        <a 
-                            :href="`https://github.com/cmmvio/docs.cmmv.io/tree/main${docs.link?.replace('.html', '.md')}?plain=1`" 
-                            target="_blank" 
+                        <a
+                            :href="`https://github.com/cmmvio/docs.cmmv.io/tree/main${docs.link?.replace('.html', '.md')}?plain=1`"
+                            target="_blank"
                             title="Suggest change"
                         >
                             <i class="fa-solid fa-pen-to-square fa-lg"></i>
@@ -541,7 +542,7 @@ Below is an example of implementation of practically all the directives that wer
         let repoint = false;
         document.querySelectorAll('#anchors li').forEach((item, index) => {
             const target = document.querySelector(item.querySelector('a').getAttribute('href'));
-            
+
             if (target?.offsetTop >= scrollPosition && !repoint) {
                 repoint = true;
                 item.classList.add('current');
@@ -560,11 +561,11 @@ Below is an example of implementation of practically all the directives that wer
             link.addEventListener('click', function(event) {
                 event.preventDefault();
                 const href = this.getAttribute('href');
-                
+
                 document.querySelectorAll('.current').forEach(el => el.classList.remove('current'));
-                
+
                 this.parentElement.classList.add('current');
-                
+
                 window.scrollTo({
                     top: document.querySelector(href).offsetTop,
                     behavior: 'smooth'
@@ -618,11 +619,11 @@ export default {
 ```html
 <ul class="p-4 select-none top-16" c-cloak c-show="docs">
     <li c-for="(item, key) in docs.navbar">
-        <div 
+        <div
             c-show="item"
-            class="flex hover:text-blue-700 itemRoot text-white" 
-            :id="item?.name.replace(/\s/,'_')" 
-            :data-opened="false" 
+            class="flex hover:text-blue-700 itemRoot text-white"
+            :id="item?.name.replace(/\s/,'_')"
+            :data-opened="false"
             @click.stop="navbar[item?.name.replace(/\s/, `_`)] = toggle(navbar[item?.name.replace(/\s/, `_`)], item.name?.replace(/\s/, `_`))"
         >
             <div class="flex flex-1 font-bold text-md cursor-pointer navbar-item">
@@ -636,9 +637,9 @@ export default {
             </div>
         </div>
 
-        <ul 
+        <ul
             c-if="item && item.children && item.children.length > 0"
-            :id="`${item?.name.replace(/\s/, `_`)}_contents`" 
+            :id="`${item?.name.replace(/\s/, `_`)}_contents`"
             class="p-4 py-1 text-md mb-4"
             :style="(navbar[item?.name.replace(/\s/, `_`)]) ? '' : 'display: none;'"
         >
@@ -657,9 +658,9 @@ export default {
 import * as fs from 'fs';
 import * as path from "path";
 
-import { 
-    Controller, Get, Param, 
-    Response, ServiceRegistry 
+import {
+    Controller, Get, Param,
+    Response, ServiceRegistry
 } from '@cmmv/http';
 
 import { DocsService } from './docs.service';
@@ -671,7 +672,7 @@ export class DocsController {
     constructor(private docsService: DocsService){}
 
 	@Get()
-	async indexHandler(@Response() res) {		
+	async indexHandler(@Response() res) {
 		return res.render("views/docs/index", {
 			docs: await this.docsService.getDocsStrutucture(),
 			services: ServiceRegistry.getServicesArr()
@@ -680,7 +681,7 @@ export class DocsController {
 
 	@Get(":item")
 	async getDocHandler(
-        @Param("item") item: string, 
+        @Param("item") item: string,
         @Response() res
     ) {
 		if(index[item])
@@ -691,8 +692,8 @@ export class DocsController {
 
 	@Get(":dir/:item")
 	async getDocSubdirHandler(
-        @Param("dir") dir: string, 
-        @Param("item") item: string, 
+        @Param("dir") dir: string,
+        @Param("item") item: string,
         @Response() res
     ) {
 		const fullPath = `${dir}/${item}`;

@@ -1,17 +1,18 @@
 # Tailwind CSS
 
 <div style="
-    background-color: #FEF3C7; 
-    border-left: 4px solid #F59E0B; 
-    color: #92400E; 
-    padding: 1rem; 
-    border-radius: 0.375rem; 
+    background-color: #FEF3C7;
+    border-left: 4px solid #F59E0B;
+    color: #92400E;
+    padding: 1rem;
+    border-radius: 0.375rem;
     margin: 1.5rem 0;
+    font-size: 12px;
 ">
     <p style="font-weight: bold; margin-bottom: 0.5rem;">Notice</p>
     <p>
-        Support for <strong>TailwindCSS</strong> integration was removed from the core module in version <strong>0.7.5</strong>. 
-        It is now recommended to use <strong>Vite</strong> for managing frontend assets and bundling. Follow the steps below 
+        Support for <strong>TailwindCSS</strong> integration was removed from the core module in version <strong>0.7.5</strong>.
+        It is now recommended to use <strong>Vite</strong> for managing frontend assets and bundling. Follow the steps below
         to configure TailwindCSS with Vite in your CMMV project.
     </p>
 </div>
@@ -130,4 +131,4 @@ Ensure your `index.html` is configured to include the `#app` element where Vue w
 - Configure Vite as your primary build tool to handle modern frontend workflows.
 - Follow TailwindCSS best practices for creating reusable and scalable styles.
 
-This setup ensures a clean separation of concerns, allowing CMMV to focus on backend operations while Vite handles the frontend assets. 
+This setup ensures a clean separation of concerns, allowing CMMV to focus on backend operations while Vite handles the frontend assets.

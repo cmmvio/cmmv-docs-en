@@ -14,6 +14,37 @@ In addition to installing the ``@cmmv/repository`` module, depending on the data
 
 **Supported Databases and Drivers**
 
+<div style="
+    background-color: #DBEAFE;
+    border-left: 4px solid #2563EB;
+    color: #1E3A8A;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    margin: 1.5rem 0;
+    font-size: 12px;
+">
+    <p style="font-weight: bold; margin-bottom: 0.5rem;">Notice</p>
+    <p>
+        Recent updates to <strong>PNPM</strong> may require manual approval for modules with build scripts, affecting packages such as
+        <strong>better-sqlite3-multiple-ciphers</strong>, <strong>esbuild</strong>, <strong>protobufjs</strong>, <strong>sqlite3</strong>, among others.
+    </p>
+    <p>
+        A fix for this issue has been implemented starting from <strong>version 0.8.20</strong>. However, if your project is using an older version,
+        you can manually resolve this by adding the following configuration to your <code>.npmrc</code> file:
+    </p>
+    <pre style="
+        background-color: #F3F4F6;
+        padding: 0.75rem;
+        border-radius: 0.375rem;
+        overflow-x: auto;
+    ">
+auto-install-peers=true
+approve-builds=always</pre>
+    <p>
+        This will ensure that all necessary builds are automatically approved during installation, preventing issues related to manual approval prompts.
+    </p>
+</div>
+
 TypeORM supports multiple database systems, and each system requires the appropriate npm package to function correctly. Here is a list of supported databases along with the corresponding driver to install:
 
 **SQLite:** [NPM](https://www.npmjs.com/package/sqlite3)
@@ -124,7 +155,7 @@ The ``@cmmv/repository`` module also generates a CRUD service that automatically
 
 ```typescript
 // Generated automatically by CMMV
-    
+
 import { Telemetry } from "@cmmv/core";
 import { AbstractService, Service } from '@cmmv/http';
 import { Repository } from '@cmmv/repository';
@@ -150,9 +181,9 @@ export class TaskService extends AbstractService {
         const item = await repository.findOneBy({ id });
         Telemetry.end('TaskService::GetById', req?.requestId);
 
-        if (!item) 
+        if (!item)
             throw new Error('Item not found');
-        
+
         return item;
     }
 
@@ -201,7 +232,7 @@ module.exports = {
     // Other project configurations...
 
     repository: {
-        type: "sqlite", 
+        type: "sqlite",
         database: "./database.sqlite",
         synchronize: true,
         logging: false,
@@ -284,7 +315,7 @@ export interface ContractIndexOptions {
 }
 ```
 
-### Generated Entity 
+### Generated Entity
 
 The ``@cmmv/repository`` module will generate the corresponding TypeORM entity with the defined indexes:
 
@@ -292,9 +323,9 @@ The ``@cmmv/repository`` module will generate the corresponding TypeORM entity w
 @Entity('user')
 @Index("idx_user_username", ["username"], { unique: true })
 @Index("idx_user_googleId", ["googleId"])
-@Index("idx_user_login", ["username", "password"], { 
-    where: "password IS NOT NULL", 
-    expireAfterSeconds: 3600 
+@Index("idx_user_login", ["username", "password"], {
+    where: "password IS NOT NULL",
+    expireAfterSeconds: 3600
 })
 export class UserEntity implements IUser {
     @ObjectIdColumn()

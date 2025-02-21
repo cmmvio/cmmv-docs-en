@@ -1,16 +1,17 @@
 # View
 
 <div style="
-    background-color: #FEF3C7; 
-    border-left: 4px solid #F59E0B; 
-    color: #92400E; 
-    padding: 1rem; 
-    border-radius: 0.375rem; 
+    background-color: #FEF3C7;
+    border-left: 4px solid #F59E0B;
+    color: #92400E;
+    padding: 1rem;
+    border-radius: 0.375rem;
     margin: 1.5rem 0;
+    font-size: 12px;
 ">
     <p style="font-weight: bold; margin-bottom: 0.5rem;">Notice</p>
     <p>
-        Starting from version <strong>0.8.3</strong>, the <strong>@cmmv/view</strong> module has been fully decoupled from the HTTP system, becoming an optional module for server-side rendering (SSR). 
+        Starting from version <strong>0.8.3</strong>, the <strong>@cmmv/view</strong> module has been fully decoupled from the HTTP system, becoming an optional module for server-side rendering (SSR).
         It continues to function with both the default server and Express but must now be explicitly enabled in the configuration settings and installed separately.
     </p>
     <p>
@@ -71,9 +72,9 @@ $ pnpm add @cmmv/view
 ## Exemple
 
 ```html
-<div 
-    class="product-page" 
-    s:product="services.product.getProductById(productId)" 
+<div
+    class="product-page"
+    s:product="services.product.getProductById(productId)"
     scope
 >
     <h1>{{ product.name }}</h1>
@@ -85,23 +86,23 @@ $ pnpm add @cmmv/view
         {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
     </div>
 
-    <button 
+    <button
         s-i18n="addToCart"
-        class="add-to-cart" 
-        @click="addToCart(product.id)" 
+        class="add-to-cart"
+        @click="addToCart(product.id)"
     ></button>
 </div>
 
 <script s-setup>
 export default {
     layout: "default",
-    
+
     data() {
         return {
             product: null
         }
     },
-    
+
     methods: {
         addToCart(productId) {
             ...
@@ -168,7 +169,7 @@ module.exports = {
             ...
         ],
         link: [
-            { rel: 'icon', href: 'assets/favicon/favicon.ico' }, 
+            { rel: 'icon', href: 'assets/favicon/favicon.ico' },
             ...
         ]
     },
@@ -195,8 +196,8 @@ The i18n configuration allows you to manage internationalization (i18n) in your 
 
 ```typescript
 i18n: {
-    localeFiles: "./src/locale", 
-    default: "en" 
+    localeFiles: "./src/locale",
+    default: "en"
 }
 ```
 
@@ -209,7 +210,7 @@ The head configuration controls the ``<head>`` section of your HTML document, al
 
 ```typescript
 head: {
-    title: "CMMV",  
+    title: "CMMV",
     htmlAttrs: { lang: "pt-br" },
     meta: [
         { charset: 'utf-8' },
@@ -230,10 +231,10 @@ The ``headers`` configuration allows you to define HTTP headers such as ``Conten
 ```typescript
 headers: {
     "Content-Security-Policy": [
-        "default-src 'self'", 
-        "script-src 'self' 'unsafe-eval'",  
-        "style-src 'self' 'unsafe-inline'",  
-        "font-src 'self'" 
+        "default-src 'self'",
+        "script-src 'self' 'unsafe-eval'",
+        "style-src 'self' 'unsafe-inline'",
+        "font-src 'self'"
     ]
 }
 ```

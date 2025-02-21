@@ -1,17 +1,18 @@
 # Vue 3
 
 <div style="
-    background-color: #FEF3C7; 
-    border-left: 4px solid #F59E0B; 
-    color: #92400E; 
-    padding: 1rem; 
-    border-radius: 0.375rem; 
+    background-color: #FEF3C7;
+    border-left: 4px solid #F59E0B;
+    color: #92400E;
+    padding: 1rem;
+    border-radius: 0.375rem;
     margin: 1.5rem 0;
+    font-size: 12px;
 ">
     <p style="font-weight: bold; margin-bottom: 0.5rem;">Notice</p>
     <p>
-        The support for <strong>Vue</strong> and <strong>TailwindCSS</strong> was removed from the core module in version <strong>0.7.5</strong>. 
-        It is now recommended to use <strong>Vite</strong> for handling frontend assets and bundling. 
+        The support for <strong>Vue</strong> and <strong>TailwindCSS</strong> was removed from the core module in version <strong>0.7.5</strong>.
+        It is now recommended to use <strong>Vite</strong> for handling frontend assets and bundling.
         Additionally, you can use the <strong>@cmmv/vue</strong> module to transpile the RPC mixins and composables required for Vue integration.
     </p>
 </div>
@@ -104,7 +105,7 @@ To integrate with Vue 2, dynamically import the mixins and include them in your 
 import Vue from 'vue';
 
 const initApp = async () => {
-    const { default: CMMVMixin } = 
+    const { default: CMMVMixin } =
         await import('/assets/rpc-mixins.min.js');
 
     new Vue({
@@ -157,9 +158,9 @@ $ pnpm add vue
 import { createApp } from 'vue';
 
 const initApp = async () => {
-    const { useRPC } = 
+    const { useRPC } =
         await import('/assets/rpc-composable.min.js');
-    
+
     const app = createApp({
         setup() {
             const rpc = useRPC();
@@ -220,7 +221,7 @@ pnpm install
 
 ```javascript
 export default defineNuxtPlugin(async () => {
-    const { useRPC } = 
+    const { useRPC } =
         await import('http://localhost:3000/assets/rpc-composable.min.js');
 
     return {

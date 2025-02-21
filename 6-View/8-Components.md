@@ -1,16 +1,17 @@
 # Components
 
 <div style="
-    background-color: #FEF3C7; 
-    border-left: 4px solid #F59E0B; 
-    color: #92400E; 
-    padding: 1rem; 
-    border-radius: 0.375rem; 
+    background-color: #FEF3C7;
+    border-left: 4px solid #F59E0B;
+    color: #92400E;
+    padding: 1rem;
+    border-radius: 0.375rem;
     margin: 1.5rem 0;
+    font-size: 12px;
 ">
     <p style="font-weight: bold; margin-bottom: 0.5rem;">Notice</p>
     <p>
-        Starting from version <strong>0.7.5</strong>, the <strong>@cmmv/reactivity</strong> module is being replaced by native <strong>Vue 3</strong> integration with <strong>Vite</strong> as the recommended pipeline for future versions. 
+        Starting from version <strong>0.7.5</strong>, the <strong>@cmmv/reactivity</strong> module is being replaced by native <strong>Vue 3</strong> integration with <strong>Vite</strong> as the recommended pipeline for future versions.
         While <strong>@cmmv/reactivity</strong> will continue to be supported, no additional features will be added to the script beyond its current functionality.
     </p>
     <p>
@@ -37,14 +38,14 @@ export default {
 
     components: { ComponentTeste },
 
-    data() { 
-        return { 
-            test: 123 
+    data() {
+        return {
+            test: 123
         }
     },
 
-    methods: { 
-        addTask() { /*...*/ } 
+    methods: {
+        addTask() { /*...*/ }
     }
 }
 </script>
@@ -60,14 +61,14 @@ export default {
 
 <script>
 export default {
-    data() { 
-        return { 
-            test: 123 
+    data() {
+        return {
+            test: 123
         }
     },
 
-    mounted() { 
-        console.log("Component mounted"); 
+    mounted() {
+        console.log("Component mounted");
     }
 }
 </script>
@@ -77,7 +78,7 @@ The component syntax is based on Vue.js, supporting lifecycle methods (``created
 
 For a complete example, see [CMMV Reactivity Samples](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/componentTemplate.cmmv).
 
-## Data 
+## Data
 
 In CMMV components, ``data`` is a key feature used to define reactive state within the component. The ``data`` function returns an object that holds reactive properties, allowing the component to dynamically update the DOM when the data changes.
 
@@ -110,7 +111,7 @@ Components can accept ``props`` to make them reusable and flexible:
     <ComponentTemplate ref="comp" :count="test"></ComponentTemplate>
 
     <hr/>
-    
+
     <div>
         Root: {{ test }}<br/>
         Component Ctx: {{ $refs.comp.count }}

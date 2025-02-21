@@ -1,16 +1,17 @@
 # Reactivity
 
 <div style="
-    background-color: #FEF3C7; 
-    border-left: 4px solid #F59E0B; 
-    color: #92400E; 
-    padding: 1rem; 
-    border-radius: 0.375rem; 
+    background-color: #FEF3C7;
+    border-left: 4px solid #F59E0B;
+    color: #92400E;
+    padding: 1rem;
+    border-radius: 0.375rem;
     margin: 1.5rem 0;
+    font-size: 12px;
 ">
     <p style="font-weight: bold; margin-bottom: 0.5rem;">Notice</p>
     <p>
-        Starting from version <strong>0.7.5</strong>, the <strong>@cmmv/reactivity</strong> module is being replaced by native <strong>Vue 3</strong> integration with <strong>Vite</strong> as the recommended pipeline for future versions. 
+        Starting from version <strong>0.7.5</strong>, the <strong>@cmmv/reactivity</strong> module is being replaced by native <strong>Vue 3</strong> integration with <strong>Vite</strong> as the recommended pipeline for future versions.
         While <strong>@cmmv/reactivity</strong> will continue to be supported, no additional features will be added to the script beyond its current functionality.
     </p>
     <p>
@@ -52,7 +53,7 @@ The ``@cmmv/view`` module already integrates reactivity natively, so it does not
 
 Below is the documentation for all directives supported by ``@cmmv/reactivity`` based on the samples provided in the CMMV Reactivity GitHub repository.
 
-## c-model 
+## c-model
 
 Binds the value of an input element to the application's data and enables two-way data binding. This is useful for dynamically updating the UI as users input data.
 
@@ -61,7 +62,7 @@ Binds the value of an input element to the application's data and enables two-wa
 <p>Username: {{ username }}</p>
 ```
 
-[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/model.html) : 
+[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/model.html) :
 ```html
 <script type="module">
   import { createApp } from '../src'
@@ -174,11 +175,11 @@ Loops through an array or object and repeats the associated element for each ite
 </ul>
 ```
 
-[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/for.html): 
+[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/for.html):
 ```html
 <script type="module">
     import { createApp } from '../src'
-  
+
     let id = 4
     createApp({
       list: [
@@ -195,7 +196,7 @@ Loops through an array or object and repeats the associated element for each ite
       }
     }).mount('#app')
 </script>
-  
+
 <div id="app" scope>
     <button @click="add">add</button>
     <button @click="list.reverse()">reverse</button>
@@ -206,7 +207,7 @@ Loops through an array or object and repeats the associated element for each ite
         <div>{{ index }} {{ { id, text } }}</div>
       </li>
     </ul>
-  
+
     <ul>
       <li c-for="item of list" :key="item.id">
         <input c-model="item.text" />
@@ -224,7 +225,7 @@ Attaches an event listener to an element. Commonly used for handling click event
 <button @click="incrementCounter">Click me!</button>
 ```
 
-[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/on.html): 
+[Sample](https://github.com/cmmvio/cmmv-reactivity/blob/main/samples/on.html):
 ```html
 <script type="module">
   import { createApp } from '../src'
@@ -273,7 +274,7 @@ Dynamically binds an attribute to an expression. This is often used to modify at
         font-weight: bold;
     }
 </style>
-  
+
 <script type="module">
     import { createApp, reactive } from '../src'
 
@@ -286,7 +287,7 @@ Dynamically binds an attribute to an expression. This is often used to modify at
 
     createApp(data).mount()
 </script>
-  
+
 <div scope>
     <div :id="id">simple binding - this should be green</div>
 
@@ -415,7 +416,7 @@ The @cmmv/reactivity framework allows you to create lightweight and reactive com
 ```html
 <script type="module">
     import { createApp, reactive } from '../src'
-  
+
     function MyComp() {
       return {
         $template: '#comp',
@@ -425,7 +426,7 @@ The @cmmv/reactivity framework allows you to create lightweight and reactive com
         }
       }
     }
-  
+
     createApp({ MyComp }).mount()
 </script>
 
