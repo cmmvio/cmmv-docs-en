@@ -1,5 +1,7 @@
 # Email
 
+Repository: [https://github.com/cmmvio/cmmv-email](https://github.com/cmmvio/cmmv-email)
+
 The `@cmmv/email` module provides a unified interface for sending emails in CMMV-based applications, using [nodemailer](https://nodemailer.com/) for email transport and optional AWS SES integration.
 
 ## Features

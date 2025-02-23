@@ -1,5 +1,7 @@
 # Cache
 
+Repository: [https://github.com/cmmvio/cmmv/tree/main/packages/cache](https://github.com/cmmvio/cmmv/tree/main/packages/cache)
+
 The ``@cmmv/cache`` module integrates with ``cache-manager`` to provide in-memory cache management. By default, it includes support for Redis using the ``@tirke/node-cache-manager-ioredis`` package, but it also supports other cache stores that are compatible with ``cache-manager``.
 
 To install the ``@cmmv/cache`` module, use npm:
@@ -73,13 +75,13 @@ In this example, we demonstrate how to manually implement caching using the ``@c
 
 ```typescript
 // Generated automatically by CMMV
-    
-import { Telemetry } from "@cmmv/core";  
-import { Cache, CacheService } from "@cmmv/cache"; 
 
-import { 
-    Controller, Get, Post, Put, Delete, 
-    Queries, Param, Body, Request 
+import { Telemetry } from "@cmmv/core";
+import { Cache, CacheService } from "@cmmv/cache";
+
+import {
+    Controller, Get, Post, Put, Delete,
+    Queries, Param, Body, Request
 } from '@cmmv/http';
 
 import { TaskService } from '../services/task.service';
@@ -114,10 +116,10 @@ export class TaskController {
     async add(@Body() item: Task, @Request() req): Promise<Task> {
         Telemetry.start('TaskController::Add', req.requestId);
         let result = await this.taskservice.add(item, req);
-        
+
         // Cache the result of the newly created task
         CacheService.set(`task:${result.id}`, JSON.stringify(result), 300);
-        
+
         Telemetry.end('TaskController::Add', req.requestId);
         return result;
     }
@@ -129,10 +131,10 @@ export class TaskController {
     ): Promise<Task> {
         Telemetry.start('TaskController::Update', req.requestId);
         let result = await this.taskservice.update(id, item, req);
-        
+
         // Update the cache with the updated task
         CacheService.set(`task:${result.id}`, JSON.stringify(result), 300);
-        
+
         Telemetry.end('TaskController::Update', req.requestId);
         return result;
     }
@@ -144,10 +146,10 @@ export class TaskController {
     ): Promise<{ success: boolean, affected: number }> {
         Telemetry.start('TaskController::Delete', req.requestId);
         let result = await this.taskservice.delete(id, req);
-        
+
         // Remove the deleted task from the cache
         CacheService.del(`task:${id}`);
-        
+
         Telemetry.end('TaskController::Delete', req.requestId);
         return result;
     }
@@ -181,7 +183,7 @@ import { AbstractContract, Contract, ContractField } from '@cmmv/core';
     controllerName: 'Task',
     protoPath: 'src/protos/task.proto',
     protoPackage: 'task',
-    cache: { 
+    cache: {
         key: "task:",   // Cache key prefix
         ttl: 300,       // Time-to-live (in seconds)
         compress: true  // Enable compression for stored data
@@ -238,7 +240,7 @@ export class TasksContract extends AbstractContract {
 
 If you need more advanced caching strategies or custom store integrations, you can customize the cache settings in the ``.cmmv.config.cjs`` file or extend the existing cache functionalities within your project. For example, you could add custom cache strategies like memory caching, database caching, or even multi-level caching.
 
-## Controllers 
+## Controllers
 
 When the ``@cmmv/cache`` module is included in the project, the automatically generated controllers from ``@cmmv/http`` are modified to include caching functionalities. The caching configuration is defined directly in the contract using the cache property. Here's how the controller is altered:
 
@@ -249,10 +251,10 @@ import { AbstractContract, Contract, ContractField } from '@cmmv/core';
     controllerName: 'Task',
     protoPath: 'src/protos/task.proto',
     protoPackage: 'task',
-    cache: { 
-        key: "task:", 
-        ttl : 300, 
-        compress: true 
+    cache: {
+        key: "task:",
+        ttl : 300,
+        compress: true
     }
 })
 export class TasksContract extends AbstractContract {
@@ -303,12 +305,12 @@ Based on the above contract with cache configuration, the generated controller w
 ```typescript
 // Generated automatically by CMMV
 
-import { Telemetry } from "@cmmv/core";  
-import { Cache, CacheService } from "@cmmv/cache"; 
+import { Telemetry } from "@cmmv/core";
+import { Cache, CacheService } from "@cmmv/cache";
 
-import { 
-    Controller, Get, Post, Put, Delete, 
-    Queries, Param, Body, Request 
+import {
+    Controller, Get, Post, Put, Delete,
+    Queries, Param, Body, Request
 } from '@cmmv/http';
 
 import { TaskService } from '../services/task.service';
@@ -397,10 +399,10 @@ import { plainToClass } from 'class-transformer';
 import { TaskEntity } from '../entities/task.entity';
 import { Cache, CacheService } from "@cmmv/cache"; // Cache module
 
-import { 
-    AddTaskRequest, 
-    UpdateTaskRequest,   
-    DeleteTaskRequest 
+import {
+    AddTaskRequest,
+    UpdateTaskRequest,
+    DeleteTaskRequest
 } from "../protos/task";
 
 import { TaskService } from '../services/task.service';
@@ -427,15 +429,15 @@ export class TaskGateway {
         const result = await this.taskservice.add(entity);
 
         const response = await RpcUtils.pack(
-            "task", "AddTaskResponse", 
+            "task", "AddTaskResponse",
             { item: result, id: result.id }
         );
 
         CacheService.set(// Manual cache update
-            `task:${result.id}`, 
-            JSON.stringify(result), 
+            `task:${result.id}`,
+            JSON.stringify(result),
             300
-        ); 
+        );
 
         socket.send(response);
     }
@@ -446,15 +448,15 @@ export class TaskGateway {
         const result = await this.taskservice.update(data.id, entity);
 
         const response = await RpcUtils.pack(
-            "task", "UpdateTaskResponse", 
+            "task", "UpdateTaskResponse",
             {  item: result, id: result.id }
         );
 
         CacheService.set(// Manual cache update
-            `task:${result.id}`, 
-            JSON.stringify(result), 
+            `task:${result.id}`,
+            JSON.stringify(result),
             300
-        ); 
+        );
 
         socket.send(response);
     }
@@ -464,13 +466,13 @@ export class TaskGateway {
         const result = (await this.taskservice.delete(data.id)).success;
 
         const response = await RpcUtils.pack(
-            "task", 
-            "DeleteTaskResponse", 
+            "task",
+            "DeleteTaskResponse",
             { success: result, id: data.id }
         );
 
         CacheService.del(`task:${data.id}`); // Cache deletion
-        
+
         socket.send(response);
     }
 }

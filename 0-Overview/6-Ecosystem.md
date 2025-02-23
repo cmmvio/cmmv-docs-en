@@ -52,6 +52,8 @@ CMMV offers a range of plugins to complement applications, providing additional 
 | [@cmmv/queue](https://github.com/cmmvio/cmmv-queue)            | Manages job queues and background processing tasks to help improve application performance.        | <a href="https://www.npmjs.com/package/@cmmv/queue"><img src="https://img.shields.io/npm/v/@cmmv/queue.svg" alt="NPM Version" /></a> |
 | [@cmmv/repository](https://github.com/cmmvio/cmmv/tree/main/packages/repository)       | Database management with repositories for handling entities and persistent data access.           | <a href="https://www.npmjs.com/package/@cmmv/repository"><img src="https://img.shields.io/npm/v/@cmmv/repository.svg" alt="NPM Version" /></a> |
 | [@cmmv/scheduling](https://github.com/cmmvio/cmmv/tree/main/packages/scheduling)       | Module for scheduling tasks and automating routines with task management support.                 | <a href="https://www.npmjs.com/package/@cmmv/scheduling"><img src="https://img.shields.io/npm/v/@cmmv/scheduling.svg" alt="NPM Version" /></a> |
+| [@cmmv/ai](https://github.com/cmmvio/cmmv-ai) | **(Beta)** AI module for integrating LLMs, vector search (FAISS, Qdrant, Milvus, Neo4j), and tokenization for RAG applications. | <a href="https://www.npmjs.com/package/@cmmv/ai"><img src="https://img.shields.io/npm/v/@cmmv/ai.svg" alt="NPM Version" /></a> |
+| [@cmmv/parallel](https://github.com/cmmvio/cmmv-parallel) | **(Beta)** High-performance parallel computing module using SharedArrayBuffer, Atomics, and fast-thread for optimized multi-threading. | <a href="https://www.npmjs.com/package/@cmmv/parallel"><img src="https://img.shields.io/npm/v/@cmmv/parallel.svg" alt="NPM Version" /></a> |
 
 ## UI
 

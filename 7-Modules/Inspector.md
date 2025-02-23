@@ -1,5 +1,7 @@
 # Inspector
 
+Repository: [https://github.com/cmmvio/cmmv-inspector](https://github.com/cmmvio/cmmv-inspector)
+
 The ``@cmmv/inspector`` module provides tools for runtime performance profiling and debugging for Node.js applications. It integrates seamlessly with CMMV-based projects and utilizes the built-in node:inspector module to capture CPU profiles and heap snapshots. The module also provides utility methods to manage and persist profiling data, making it an essential tool for optimizing and debugging your applications.
 
 ## Installation
@@ -41,7 +43,7 @@ async function runProfiler() {
 runProfiler();
 ```
 
-## Bind Process 
+## Bind Process
 
 Ensure proper cleanup during process termination by binding kill signals.
 
@@ -137,7 +139,7 @@ Inspector.once(async () => {
 });
 ```
 
-## Workflow 
+## Workflow
 
 The following workflow demonstrates how to use the ``@cmmv/inspector`` module to start profiling, capture a heap snapshot, and stop profiling during process termination.
 

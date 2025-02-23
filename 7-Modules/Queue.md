@@ -1,4 +1,6 @@
-# Queue 
+# Queue
+
+Repository: [https://github.com/cmmvio/cmmv-queue](https://github.com/cmmvio/cmmv-queue)
 
 The ``@cmmv/queue`` module provides a powerful and unified interface for managing message queues in Node.js applications built with the ``@cmmv/core`` framework. It supports RabbitMQ, Kafka, and Redis as queue backends, enabling developers to define producers and consumers for message processing in a structured and modular manner. The module simplifies the integration of queue-driven architecture, making it easy to build scalable, event-driven systems.
 
@@ -56,10 +58,10 @@ module.exports = {
 Use the ``@Channel`` and ``@Consume`` decorators to define message consumers. Below is an example consumer for RabbitMQ:
 
 ```typescript
-import { 
-    Channel, Consume, 
-    QueueMessage, QueueConn, 
-    QueueChannel 
+import {
+    Channel, Consume,
+    QueueMessage, QueueConn,
+    QueueChannel
 } from "@cmmv/queue";
 
 import { QueueService } from "../services";
@@ -70,7 +72,7 @@ export class HelloWorldConsumer {
 
     @Consume("hello-world")
     public async onReceiveMessage(
-        @QueueMessage() message, 
+        @QueueMessage() message,
         @QueueChannel() channel,
         @QueueConn() conn
     ){
@@ -90,16 +92,16 @@ export class HelloWorldConsumer {
 To enable Pub/Sub, use the ``pubSub`` option in the ``@Channel`` decorator.
 
 ```typescript
-import { 
-    Channel, Consume, 
-    QueueMessage 
+import {
+    Channel, Consume,
+    QueueMessage
 } from "@cmmv/queue";
 
 import { QueueService } from "../services";
 
-@Channel("broadcast", { 
+@Channel("broadcast", {
     exchangeName: "broadcast",
-    pubSub: true 
+    pubSub: true
 })
 export class BroadcastConsumer {
     constructor(private readonly queueService: QueueService) {}

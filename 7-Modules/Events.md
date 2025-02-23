@@ -1,5 +1,7 @@
 # Events
 
+Repository: [https://github.com/cmmvio/cmmv-events](https://github.com/cmmvio/cmmv-events)
+
 The `@cmmv/events` module provides a robust and flexible event-driven system for managing asynchronous communication within your application. Leveraging `eventemitter2`, this module enables developers to create, emit, and listen to events seamlessly, enhancing the modularity and scalability of the application.
 
 ## Features

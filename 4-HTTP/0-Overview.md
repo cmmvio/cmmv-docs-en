@@ -1,5 +1,7 @@
 # Overview
 
+Repository: [https://github.com/cmmvio/cmmv/tree/main/packages/http](https://github.com/cmmvio/cmmv/tree/main/packages/http)
+
 The CMMV framework introduces its own default server implementation, ``@cmmv/server``, which offers superior performance and seamless integration with the overall CMMV ecosystem. This server is highly optimized and designed to provide built-in support for critical features such as compression, routing, request handling, static file serving, security, and middleware management. Because ``@cmmv/server`` is developed as a core part of CMMV, it allows for better control over feature enhancements, bug fixes, and performance improvements, making it the recommended option for most applications.
 
 The server is flexible and shares many of the same APIs and capabilities as [Express](https://expressjs.com/) and [Fastify](https://fastify.dev/), which ensures an easy transition if you're familiar with those frameworks. However, ``@cmmv/server`` also includes enhanced integration with CMMV’s contracts, modules, and services, providing a more consistent developer experience across different layers of the application.
@@ -72,28 +74,6 @@ Application.create({
 
 The adapter registers all controllers automatically from the ControllerRegistry. It matches the controller’s routes to the corresponding HTTP methods (GET, POST, etc.), and processes middleware defined at the controller level.
 
-## Fastify
-
-The Fastify Adapter in CMMV provides an alternative to the Express Adapter, allowing for lightweight, high-performance HTTP handling using Fastify's framework. This adapter integrates key middleware like compression, CORS, helmet for security, and static file serving. It automatically registers controllers and manages the lifecycle of incoming requests. The Fastify Adapter follows the same structure as the Express Adapter, supporting session management and content rendering, while offering a faster, more optimized environment.
-
-```bash
-$ pnpm add @cmmv/fastify @fastify/compress @fastify/cors @fastify/helmet @fastify/secure-session @fastify/static @fastify/view
-```
-
-### Integration
-
-```typescript
-import { Application } from '@cmmv/core';
-import { FastifyAdapter, FastifyModule } from '@cmmv/fastify';
-
-Application.create({
-    httpAdapter: FastifyAdapter,
-    modules: [FastifyModule, ...],
-    services: [...],
-    contracts: [...],
-});
-```
-
 ## Middlewares
 
 The httpMiddlewares configuration allows you to inject custom middleware into the HTTP adapter (such as Express or Fastify) during the application's initialization. This provides additional flexibility by letting you apply any middleware functions to handle tasks like logging, request validation, or security checks.
@@ -111,9 +91,9 @@ import morgan from "morgan";
 Application.create({
     httpAdapter: ExpressAdapter,
     httpMiddlewares: [
-        morgan('dev'), 
+        morgan('dev'),
     ],
-    modules: [ 
+    modules: [
         ExpressModule,
         ViewModule
     ]

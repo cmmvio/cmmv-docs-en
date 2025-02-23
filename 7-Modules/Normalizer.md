@@ -1,5 +1,7 @@
 # Normalizer
 
+Repository: [https://github.com/cmmvio/cmmv-normalizer](https://github.com/cmmvio/cmmv-normalizer)
+
 The ``@cmmv/normalizer`` module provides a robust and efficient way to normalize data from various formats (JSON, XML, YML) using schemas, transformations, and validations. Designed for scalability, it uses streams to process large files with minimal memory consumption. The module seamlessly integrates with other ``@cmmv`` modules, maintaining data consistency through models and contracts. Additionally, it supports tokenization for sensitive data using the ``@cmmv/encryptor``, allowing secure storage of encrypted objects and strings.
 
 ## Features
@@ -18,7 +20,7 @@ To install the @cmmv/normalizer module:
 $ pnpm add @cmmv/normalizer @cmmv/encryptor
 ```
 
-## Example 
+## Example
 
 The following example demonstrates how to normalize a large JSON file using ``JSONParser`` and a schema with custom transformations and validations.
 
@@ -183,7 +185,7 @@ new CSVParser({
 .start();
 ```
 
-**Output** 
+**Output**
 
 ```json
 {
@@ -228,7 +230,7 @@ class CustomerParserSchema extends AbstractParserSchema {
             to: 'id',                           // Maps the raw field to 'id'
             transform: [ToInt, ToObjectId],     // Converts to integer, then to ObjectId
         },
-        name: { 
+        name: {
             to: 'name'                          // Maps the raw field to 'name'
         },
         email: {

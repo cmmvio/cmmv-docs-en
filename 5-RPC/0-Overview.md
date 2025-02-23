@@ -30,7 +30,7 @@ In scenarios where real-time communication, such as gaming, financial trading pl
 
 By choosing RPC via WebSocket/Protobuf as the default communication protocol, CMMV ensures that developers can build efficient, scalable applications without the burden of HTTP’s overhead or JSON’s inefficiency, leading to faster, more reliable systems.
 
-# Protobuf 
+# Protobuf
 
 Protocol Buffers (Protobuf) is a language-neutral, platform-neutral binary serialization format developed by Google. In CMMV, Protobuf was selected as the communication layer due to its efficiency, structure, and performance benefits over alternatives like JSON or XML.
 
@@ -51,8 +51,11 @@ By using Protobuf, CMMV ensures optimal performance in data serialization, makin
 To implement WebSocket communication using Protobuf in CMMV, follow these steps:
 
 ```bash
-$ pnpm add @cmmv/protobuf @cmmv/ws protobufjs 
+$ pnpm add @cmmv/protobuf @cmmv/ws protobufjs
 ```
+
+* Repository: [https://github.com/cmmvio/cmmv/tree/main/packages/protobuf](https://github.com/cmmvio/cmmv/tree/main/packages/protobuf)
+* Repository: [https://github.com/cmmvio/cmmv/tree/main/packages/ws](https://github.com/cmmvio/cmmv/tree/main/packages/ws)
 
 Application setup:
 
@@ -64,7 +67,7 @@ import { WSModule, WSAdapter } from "@cmmv/ws";
 import { ViewModule } from "@cmmv/view";
 
 Application.create({
-    httpAdapter: ExpressAdapter,    
+    httpAdapter: ExpressAdapter,
     wsAdapter: WSAdapter,
     modules: [
         ExpressModule,
@@ -107,7 +110,7 @@ In CMMV, contracts are processed in .proto format and stored in the /src/proto d
 
 **On-Demand Loading:** Setting preLoadContracts = false loads .proto files as needed upon receiving the first message that requires the contract, caching them locally for future use. This approach is useful for applications with numerous contracts.
 
-## Integration 
+## Integration
 
 The CMMV framework simplifies communication in the frontend by binding Protobuf methods directly to the view context. This allows developers to invoke RPC methods like AddTaskRequest and DeleteTaskRequest within their views seamlessly, as demonstrated in the example to-do list.
 
@@ -115,30 +118,30 @@ The CMMV framework simplifies communication in the frontend by binding Protobuf 
 <div class="todo-box" scope>
     <h1 s-i18n="todo"></h1>
 
-    <div 
-        c-show="todolist?.length > 0" 
+    <div
+        c-show="todolist?.length > 0"
         s:todolist="services.task.getAll()"
     >
-        <div 
+        <div
             c-show="todolist"
             c-for="(item, key) in todolist"
             class="todo-item"
         >
             <div class="todo-item-content">
-                <input 
-                    type="checkbox" 
-                    c-model="item.checked" 
+                <input
+                    type="checkbox"
+                    c-model="item.checked"
                     @change="UpdateTaskRequest(item)"
                 ></input>
 
-                <label 
+                <label
                     :class="{'todo-item-checked': item.checked}"
                 >{{ item.label }}</label>
             </div>
-            
-            <button 
+
+            <button
                 class="todo-btn-remove"
-                s-i18n="remove" 
+                s-i18n="remove"
                 @click="DeleteTaskRequest(item.id)"
             ></button>
         </div>
@@ -147,9 +150,9 @@ The CMMV framework simplifies communication in the frontend by binding Protobuf 
     <div class="todo-input-box">
         <input c-model="label" class="todo-input">
 
-        <button 
+        <button
             class="todo-btn-add"
-            s-i18n="add" 
+            s-i18n="add"
             @click="addTask"
         ></button>
     </div>
@@ -191,7 +194,7 @@ export default {
                     item => item.id === data.id
                 );
 
-                if (index !== -1) 
+                if (index !== -1)
                     this.todolist.splice(index, 1);
             }
         },
@@ -202,12 +205,12 @@ export default {
             const index = this.todolist.findIndex(
                 item => item.id === data.id
             );
-            
-            if (index !== -1) 
+
+            if (index !== -1)
                 this.todolist[index] = { ...data.item, id: data.id };
-            else 
+            else
                 this.todolist.push({ ...data.item, id: data.id });
-        } 
+        }
     }
 }
 </script>

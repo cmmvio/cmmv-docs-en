@@ -19,6 +19,8 @@
     </p>
 </div>
 
+Repository: [https://github.com/cmmvio/cmmv/tree/main/packages/view](https://github.com/cmmvio/cmmv/tree/main/packages/view)
+
 The ``@cmmv/view`` module in CMMV is a custom view engine designed to optimize SEO and performance by incorporating server-side rendering (SSR) with seamless integration into modern frontend frameworks. Built on top of EJS (Embedded JavaScript), it serves as a middleware for Express and Fastify, processing views in real-time and injecting pre-loaded data into the HTML before it reaches the browser. This approach enables search engines to index content that has already been processed, while still offering flexibility to use popular frontend frameworks like Vue.js, React, or Angular for additional client-side interaction.
 
 Traditional client-side rendering (CSR) frameworks, such as Vue.js and React, generate content dynamically in the browser. While these frameworks provide rich interactivity, they can negatively impact SEO due to the delayed rendering of content—search engines may not fully index dynamic content that relies on JavaScript execution.
