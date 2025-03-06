@@ -59,7 +59,7 @@ export default {
 
 By configuring headers both globally and at the template level, you have full control over the behavior, security, and SEO optimization of your CMMV application.
 
-# HTTP Module
+## HTTP Module
 
 The ``@cmmv/http`` module provides an automatic way to manage and optimize the headers that are sent with HTTP responses, reducing the size of unnecessary headers based on the request type (e.g., ``GET``, ``POST``, ``PUT``, or ``DELETE`` requests). This built-in functionality ensures that only relevant headers are included, minimizing overhead and improving performance.
 
@@ -111,7 +111,7 @@ if (['POST', 'PUT', 'DELETE'].includes(req.method)) {
 
 The ``@cmmv/http`` module intelligently manages headers to optimize performance, especially for write operations (``POST``, ``PUT``, ``DELETE``). For read-only operations (``GET``), it ensures strong security by setting appropriate headers. This approach reduces the amount of unnecessary data sent with each request, while still adhering to best practices in web security.
 
-# Additional Modules
+## Additional Modules
 
 The ``@cmmv/http`` module integrates several essential middleware components to further enhance security, session management, and overall performance. These include ``cors``, ``helmet``, ``session``, and ``compression``, which modify headers and handle certain aspects of HTTP communication.
 

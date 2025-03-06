@@ -269,7 +269,7 @@ export default {
 
 The ``mounted`` hook is essential when you need to ensure that your component is fully loaded into the DOM before interacting with it, making it useful for DOM manipulations, setting up event listeners, or initializing components that rely on third-party libraries or services.
 
-# Slot
+## Slot
 
 Slots in CMMV allow you to pass custom content from the parent scope into the child component. They can be dynamically updated using data from the parent component.
 

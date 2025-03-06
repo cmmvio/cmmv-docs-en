@@ -63,7 +63,7 @@ Client-side rendering frameworks often involve large JavaScript bundles and sign
 **Pre-Loaded Data for SEO and UX**
 By pre-fetching data and injecting it into the HTML, ``@cmmv/view`` ensures that users and search engines see the most relevant content immediately. Whether it’s product information, blog content, or news articles, everything is available as soon as the page loads, improving both SEO and user engagement.
 
-# Installation
+## Installation
 
 Install the @cmmv/view package via npm:
 

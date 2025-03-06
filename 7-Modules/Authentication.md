@@ -331,7 +331,7 @@ export class UserController {
 
 The decorator adds the authentication and authorization middleware to the route's metadata. This middleware is processed before the route handler is executed, ensuring that unauthorized users are blocked before any business logic is reached.
 
-# User Registration
+## User Registration
 
 Starting from version `0.8.10`, the `@cmmv/auth` module has been redesigned to include controllers, services, and gateways within the module itself, eliminating the need for code generation. Simply adding the module to your application automatically enables all authentication functionalities.
 

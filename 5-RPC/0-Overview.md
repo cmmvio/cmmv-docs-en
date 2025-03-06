@@ -30,7 +30,7 @@ In scenarios where real-time communication, such as gaming, financial trading pl
 
 By choosing RPC via WebSocket/Protobuf as the default communication protocol, CMMV ensures that developers can build efficient, scalable applications without the burden of HTTP’s overhead or JSON’s inefficiency, leading to faster, more reliable systems.
 
-# Protobuf
+## Protobuf
 
 Protocol Buffers (Protobuf) is a language-neutral, platform-neutral binary serialization format developed by Google. In CMMV, Protobuf was selected as the communication layer due to its efficiency, structure, and performance benefits over alternatives like JSON or XML.
 

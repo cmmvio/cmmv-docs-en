@@ -8,9 +8,9 @@ Here’s an example of a custom controller:
 import * as fs from 'fs';
 import * as path from "path";
 
-import { 
-    Controller, Get, Param, 
-    Response, ServiceRegistry 
+import {
+    Controller, Get, Param,
+    Response, ServiceRegistry
 } from '@cmmv/http';
 
 import { DocsService } from './docs.service';
@@ -20,7 +20,7 @@ export class DocsController {
     constructor(private docsService: DocsService){}
 
 	@Get()
-	async index(@Response() res) {		
+	async index(@Response() res) {
 		res.render("views/docs/index", {
 			docs: await this.docsService.getDocsStrutucture(),
 			services: ServiceRegistry.getServicesArr()
@@ -217,16 +217,16 @@ async getHost(@HostParam() host: string): Promise<string> {
 }
 ```
 
-# Getting up and running
+## Getting up and running
 
 To make the controller functional, it needs to be added to a module and called in the application. The process involves creating a module, registering the controller, and ensuring the module is used during application initialization.
 
 Here is an example of registering a controller inside a module:
 
-```typescript   
+```typescript
 import { Module } from '@cmmv/core';
 import { TaskController } from './controllers/task.controller';
-    
+
 export let TaskModule = new Module({
     controllers: [TaskController],
     ...

@@ -18,10 +18,10 @@ export class TasksContract extends AbstractContract {
     @ContractField({
         protoType: 'string',
         unique: true,
-        validations: [{ 
+        validations: [{
             type: "IsString",
             message: "Invalid label"
-        }, { 
+        }, {
             type: "IsNotEmpty",
             message: "Label cannot be empty"
         }]
@@ -50,7 +50,7 @@ export class TasksContract extends AbstractContract {
 }
 ```
 
-## Structure 
+## Structure
 
 Each validation rule is configured using the ``validations`` parameter, which contains an array of validation objects. Each object can include the following properties:
 
@@ -137,10 +137,10 @@ export class TasksContract extends AbstractContract {
     @ContractField({
         protoType: 'string',
         unique: true,
-        validations: [{ 
+        validations: [{
             type: "IsString",
             message: "Invalid label"
-        }, { 
+        }, {
             type: "IsNotEmpty",
             message: "Invalid label"
         }]
@@ -175,7 +175,7 @@ When the contract is processed by the framework, the following model is automati
 // Generated automatically by CMMV
 
 import { IsString, IsNotEmpty, IsBoolean } from 'class-validator';
-        
+
 export interface ITask {
     id?: any;
     label: string;
@@ -213,35 +213,35 @@ async add(item: ITask, req?: any): Promise<TaskEntity> {
     return new Promise(async (resolve, reject) => {
         try{
             Telemetry.start('TaskService::Add', req?.requestId);
-                    
+
             // Convert plain object to class and validate the data
-            const newItem = plainToClass(Task, item, { 
+            const newItem = plainToClass(Task, item, {
                 exposeUnsetFields: true,
                 enableImplicitConversion: true
-            }); 
+            });
 
             // Validate the newItem with class-validator
-            const errors = await validate(newItem, { 
-                skipMissingProperties: true 
+            const errors = await validate(newItem, {
+                skipMissingProperties: true
             });
-            
+
             if (errors.length > 0) {
                 // If validation fails, return the errors
                 Telemetry.end('TaskService::Add', req?.requestId);
                 reject(errors);
-            } 
-            else {                   
+            }
+            else {
                 // If validation passes, proceed with the repository
                 const result = await Repository.insert<TaskEntity>(
                     TaskEntity, newItem
                 );
                 Telemetry.end('TaskService::Add', req?.requestId);
-                resolve(result);                    
+                resolve(result);
             }
         }
-        catch(e){ 
+        catch(e){
             Telemetry.end('TaskService::Add', req?.requestId);
-            console.log(e); 
+            console.log(e);
             reject(e);
         }
     });
