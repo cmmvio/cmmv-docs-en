@@ -21,7 +21,6 @@ import { Application } from '@cmmv/core';
 import { DefaultHTTPModule } from '@cmmv/http';
 import { ProtobufModule } from '@cmmv/protobuf';
 import { WSModule } from '@cmmv/ws';
-import { ViewModule } from '@cmmv/view';
 import { RepositoryModule, Repository } from '@cmmv/repository';
 import { AuthModule } from '@cmmv/auth';
 
@@ -33,7 +32,6 @@ Application.compile({
         DefaultHTTPModule,
         ProtobufModule,
         WSModule,
-        ViewModule,
         RepositoryModule,
         AuthModule,
     ],
@@ -55,15 +53,15 @@ Starting from version **8.5**, a script has been added to simplify the compilati
 To compile without running an actual HTTP or RPC server, run the following command:
 
 ```bash
-./tools/cleanupPackages.sh && 
-    pnpm run clean && 
+./tools/cleanupPackages.sh &&
+    pnpm clean &&
     NODE_ENV=dev node -r @swc-node/register ./src/compile.ts
 ```
 
 <br/>
 
 1. **\`./tools/cleanupPackages.sh\`** – Cleans up unused or outdated package dependencies.
-2. **\`pnpm run clean\`** – Removes temporary files and builds directories.
+2. **\`pnpm clean\`** – Removes temporary files and builds directories.
 4. **\`NODE_ENV=dev\`** – Sets the environment to development mode.
 5. **\`node -r @swc-node/register ./src/compile.ts\`** – Compiles the application with SWC for faster execution.
 

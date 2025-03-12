@@ -38,7 +38,7 @@ approve-builds=always</pre>
 Install the CLI Globally: To use the CLI globally on your system, install it using ``pnpm``:
 
 ```bash
-$ pnpm add -g @cmmv/cli
+$ pnpm add -g @cmmv/cli@latest
 ```
 
 Create a New Project: Run the ``cmmv create`` command to create a new project:
@@ -124,12 +124,6 @@ The CLI generates a structured project folder with necessary files and directori
 ```
 .
 ├── .generated/
-├── public/
-│   ├── assets/
-│   │   └── protobuf.min.js (if RPC is enabled)
-│   ├── core/
-│   ├── templates/
-│   └── views/
 ├── src/
 │   ├── app.controller.ts
 │   ├── app.module.ts
@@ -252,7 +246,7 @@ The `cmmv contract` command allows you to create contracts in the CMMV framework
 To create a contract, use the following command:
 
 ```bash
-$ cmmv contract <contract-name>
+$ cmmv contract contract-name
 ```
 
 This will launch an interactive prompt to configure your contract. You can define the contract's name, metadata, fields, and validation rules.

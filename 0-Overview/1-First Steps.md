@@ -19,7 +19,7 @@ CMMV now provides a CLI (Command Line Interface) to streamline the installation 
 To initialize a new project, you can use the following command:
 
 ```bash
-$ pnpm dlx @cmmv/cli@latest init <project-name>
+$ pnpm dlx @cmmv/cli@latest init project-name
 ```
 
 This command will walk you through a guided setup process, asking about your preferred configurations, such as enabling Vite, RPC, caching, repository type, and view setup (e.g., Vue 3 or Reactivity). It will automatically create the necessary files and folders, set up dependencies, and configure the project.
@@ -29,7 +29,7 @@ This command will walk you through a guided setup process, asking about your pre
 If you prefer to set up the project manually, you can still install the necessary modules individually:
 
 ```bash
-$ pnpm add @cmmv/core @cmmv/http @cmmv/view reflect-metadata
+$ pnpm add @cmmv/core @cmmv/http reflect-metadata
 ```
 
 ## Structure
@@ -51,7 +51,6 @@ import { Application } from "@cmmv/core";
 import { DefaultAdapter, DefaultHTTPModule } from "@cmmv/http";
 import { ProtobufModule } from "@cmmv/protobuf";
 import { WSModule, WSAdapter } from "@cmmv/ws";
-import { ViewModule } from "@cmmv/view";
 import { RepositoryModule, Repository } from "@cmmv/repository";
 import { ApplicationModule } from "./app.module";
 
@@ -62,7 +61,6 @@ Application.create({
         DefaultHTTPModule,
         ProtobufModule,
         WSModule,
-        ViewModule,
         RepositoryModule
     ],
     services: [Repository],
@@ -91,29 +89,26 @@ The default directories that come with the project are the following:
     ├── entities/
     ├── models/
     ├── services/
-    ├── app.module.ts
-    └── index.ts
+    └── main.ts
 ```
 
 ## Structure Explanation
 
-- **public/**: This directory contains all the static resources of the application, such as CSS, JavaScript and images. Within `public`, we have:
-- **assets/**: Stores static files such as styles, scripts, images and other resources needed for the user interface.
-- **templates/**: Contains HTML template files that can be used as base layouts for views.
-- **views/**: Contains the pages or UI components that will be rendered on the frontend.
+- **public**: This directory contains all the static resources of the application, such as CSS, JavaScript and images. Within `public`, we have:
+- **assets**: Stores static files such as styles, scripts, images and other resources needed for the user interface.
+- **templates**: Contains HTML template files that can be used as base layouts for views.
+- **views**: Contains the pages or UI components that will be rendered on the frontend.
 
-- **src/**: The `src` directory is the core of the application, where the source code is organized in a modular way to facilitate development and maintenance. In it, we find:
-- **contracts/**: This is the most important directory, as it is where the application contracts are defined. When starting the application, the system checks the contracts present in this directory and, from them, automatically generates the controllers, entities, models and services. These contracts serve as the basis of the entire application structure.
+- **src**: The `src` directory is the core of the application, where the source code is organized in a modular way to facilitate development and maintenance. In it, we find:
+- **contracts**: This is the most important directory, as it is where the application contracts are defined. When starting the application, the system checks the contracts present in this directory and, from them, automatically generates the controllers, entities, models and services. These contracts serve as the basis of the entire application structure.
 
-- **controllers/**: After verifying the contracts, controllers are automatically generated in this directory. They are responsible for handling HTTP requests, processing data, and returning appropriate responses.
+- **controllers**: After verifying the contracts, controllers are automatically generated in this directory. They are responsible for handling HTTP requests, processing data, and returning appropriate responses.
 
-- **entities/**: If the `repository` module is present, this directory will house the entities generated in TypeORM format, which represent the database tables and serve as object-relational mapping (ORM).
+- **entities**: If the `repository` module is present, this directory will house the entities generated in TypeORM format, which represent the database tables and serve as object-relational mapping (ORM).
 
-- **models/**: Also generated from contracts, models are used to define the structure of the data that will be manipulated by the application, including data validation and transformation.
+- **models**: Also generated from contracts, models are used to define the structure of the data that will be manipulated by the application, including data validation and transformation.
 
-- **services/**: Services encapsulate the business logic and are responsible for manipulating entities and interacting with other application modules. They are automatically generated based on the contracts and installed modules.
-
-- **app.module.ts**: This file is the root module of the application, configuring the main services and modules necessary for the application to function.
+- **services**: Services encapsulate the business logic and are responsible for manipulating entities and interacting with other application modules. They are automatically generated based on the contracts and installed modules.
 
 - **index.ts**: The application entry point, where the server is initialized and configured to start receiving requests.
 
