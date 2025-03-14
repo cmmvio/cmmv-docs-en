@@ -1,5 +1,61 @@
 # Changelog
 
+## Version 0.8.34
+March 13, 2025
+
+### New Features
+
+- **GraphQL Module (`@cmmv/graphql`)**
+  - Introduced first-class support for GraphQL with `type-graphql` and `Apollo Server`.
+  - Automatically generates types and resolvers from system contracts.
+  - Native integration with `@cmmv/auth`, supporting authentication, role-based access, and token refresh.
+  - Added pagination and filtering to maintain parity with REST and RPC functionalities.
+
+- **OpenAPI Module (`@cmmv/openapi`)**
+  - Automatically generates **OpenAPI/Swagger** documentation for all controllers and routes.
+  - Generates `openapi.json` and `openapi.yml` files inside `/public` for external integrations.
+  - Implements `/docs` route for public API documentation.
+  - Supports Bearer Token and OAuth2 authentication schemes when `@cmmv/auth` is enabled.
+
+- **Contract Schema Transpiler**
+  - Introduced transpiler for **schema generation** in both JSON and YAML formats.
+  - All contracts now generate structured schemas, enabling better interoperability with other services.
+
+### Core Enhancements
+
+- **Extended `Application` API**
+  - Added `getResolver` and `getResolvers` to retrieve dynamically generated GraphQL resolvers.
+  - Introduced `resolveProvider`, allowing providers with dependencies on other providers to be dynamically resolved.
+
+- **Enhanced `@cmmv/core` Support for OpenAPI & GraphQL**
+  - Contracts now support **metadata annotations** for OpenAPI schema generation.
+  - Built-in mechanisms to **automatically register resolvers** from contracts when GraphQL is enabled.
+
+### Fixes & Improvements
+
+- **Authentication Updates (`@cmmv/auth`)**
+  - Improved security with enhanced **token validation and refresh mechanisms**.
+  - Fixed inconsistencies in session management when using role-based authentication.
+  - Added support for **GraphQL authentication resolvers**, ensuring seamless auth integration across all API layers.
+
+- **Performance Optimizations**
+  - Improved contract schema generation performance.
+  - Optimized the way OpenAPI schemas are compiled, reducing **build time**.
+
+### Recommendations
+
+- **Adopt OpenAPI for Documentation**
+  - If you require API documentation, enable `@cmmv/openapi` to automatically generate OpenAPI specs.
+
+- **Migrate to GraphQL for Flexible Data Queries**
+  - Applications that require **custom queries** should migrate to `@cmmv/graphql` to take advantage of type-safe resolvers.
+
+- **Update Authentication Flows**
+  - Migrate authentication flows to take advantage of the new `@cmmv/auth` updates, including **JWT refresh, OAuth2, and role-based access control**.
+
+Updating to **0.8.34** introduces major improvements in **GraphQL, OpenAPI, schema generation, and authentication**, making CMMV more extensible and interoperable.
+
+
 ## Version 0.8.30
 March 5, 2025
 
