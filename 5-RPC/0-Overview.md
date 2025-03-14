@@ -56,24 +56,23 @@ $ pnpm add @cmmv/protobuf @cmmv/ws protobufjs
 
 * Repository: [https://github.com/cmmvio/cmmv/tree/main/packages/protobuf](https://github.com/cmmvio/cmmv/tree/main/packages/protobuf)
 * Repository: [https://github.com/cmmvio/cmmv/tree/main/packages/ws](https://github.com/cmmvio/cmmv/tree/main/packages/ws)
+<br/>
 
 Application setup:
 
 ```typescript
 import { Application } from "@cmmv/core";
-import { ExpressAdapter, ExpressModule } from "@cmmv/http";
+import { DefaultAdapter, DefaultHTTPModule } from "@cmmv/http";
 import { ProtobufModule } from "@cmmv/protobuf";
 import { WSModule, WSAdapter } from "@cmmv/ws";
-import { ViewModule } from "@cmmv/view";
 
 Application.create({
-    httpAdapter: ExpressAdapter,
+    httpAdapter: DefaultAdapter,
     wsAdapter: WSAdapter,
     modules: [
-        ExpressModule,
+        DefaultHTTPModule,
         ProtobufModule,
-        WSModule,
-        ViewModule
+        WSModule
     ],
     contracts: [...],
 });

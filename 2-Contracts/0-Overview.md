@@ -1,4 +1,4 @@
-# Contracts 
+# Contracts
 
 CMMV's contract system allows defining structured models that are used to auto-generate APIs, RPCs, and WebSocket routes. Contracts are defined using decorators applied to classes and their fields.
 
@@ -13,21 +13,21 @@ import { AbstractContract, Contract, ContractField } from "@cmmv/core";
     protoPackage: "task"
 })
 export class TasksContract extends AbstractContract {
-    @ContractField({ 
-        protoType: 'string', 
-        unique: true 
+    @ContractField({
+        protoType: 'string',
+        unique: true
     })
     label: string;
 
-    @ContractField({ 
-        protoType: 'bool', 
-        defaultValue: false 
+    @ContractField({
+        protoType: 'bool',
+        defaultValue: false
     })
     checked: boolean;
 
-    @ContractField({ 
-        protoType: 'bool', 
-        defaultValue: false 
+    @ContractField({
+        protoType: 'bool',
+        defaultValue: false
     })
     removed: boolean;
 }
@@ -76,25 +76,21 @@ These DTOs are integrated into generated controllers and gateways, ensuring cons
 
 ## HTTP Module
 
-To start a basic REST application using the ``@cmmv/http`` and ``@cmmv/view`` modules, follow these steps:
+To start a basic REST application using the ``@cmmv/http`` module, follow these steps:
 
 ```
-$ pnpm add @cmmv/http @cmmv/view
+$ pnpm add @cmmv/http
 ```
 
 Set up the application:
 
 ```typescript
 import { Application } from "@cmmv/core";
-import { ExpressAdapter, ExpressModule } from "@cmmv/http";
-import { ViewModule } from "@cmmv/view";
+import { DefaultAdapter, DefaultHTTPModule } from "@cmmv/http";
 
 Application.create({
-    httpAdapter: ExpressAdapter,
-    modules: [ 
-        ExpressModule,
-        ViewModule
-    ]
+    httpAdapter: DefaultAdapter,
+    modules: [DefaultHTTPModule]
 });
 ```
 
@@ -127,12 +123,12 @@ The example contract provided above will automatically generate a controller at 
 
 ```typescript
 // Generated automatically by CMMV
-    
+
 import { Telemetry } from "@cmmv/core";
 
-import { 
-    Controller, Get, Post, Put, Delete, 
-    Queries, Param, Body, Request 
+import {
+    Controller, Get, Post, Put, Delete,
+    Queries, Param, Body, Request
 } from '@cmmv/http';
 
 import { TaskService } from '../services/task.service';
@@ -168,8 +164,8 @@ export class TaskController {
 
     @Put(':id')
     async update(
-        @Param('id') id: string, 
-        @Body() item: Task, 
+        @Param('id') id: string,
+        @Body() item: Task,
         @Request() req
     ): Promise<Task> {
         Telemetry.start('TaskController::Update', req.requestId);
@@ -180,7 +176,7 @@ export class TaskController {
 
     @Delete(':id')
     async delete(
-        @Param('id') id: string, 
+        @Param('id') id: string,
         @Request() req
     ): Promise<{ success: boolean, affected: number }> {
         Telemetry.start('TaskController::Delete', req.requestId);
@@ -201,7 +197,7 @@ Here is an example of a service created using the repository module. This servic
 
 ```typescript
 // Generated automatically by CMMV
-    
+
 import { Telemetry } from "@cmmv/core";
 import { AbstractService, Service } from '@cmmv/http';
 import { Repository } from '@cmmv/repository';
@@ -227,9 +223,9 @@ export class TaskService extends AbstractService {
         const item = await repository.findOneBy({ id });
         Telemetry.end('TaskService::GetById', req?.requestId);
 
-        if (!item) 
+        if (!item)
             throw new Error('Item not found');
-        
+
         return item;
     }
 

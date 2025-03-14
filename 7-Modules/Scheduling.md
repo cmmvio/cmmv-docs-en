@@ -38,13 +38,13 @@ Ensure that the ``SchedulingService`` is initialized during the startup of your 
 require('dotenv').config();
 
 import { Application } from '@cmmv/core';
-import { ExpressAdapter, ExpressModule } from '@cmmv/http';
+import { DefaultAdapter, DefaultHTTPModule } from '@cmmv/http';
 import { WSModule, WSAdapter } from '@cmmv/ws';
 ...
 import { SchedulingModule, SchedulingService } from '@cmmv/scheduling';
 
 Application.create({
-    httpAdapter: ExpressAdapter,
+    httpAdapter: DefaultAdapter,
     wsAdapter: WSAdapter,
     modules: [
         ...
