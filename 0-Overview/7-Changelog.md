@@ -1,5 +1,48 @@
 # Changelog
 
+## Version 0.9.0
+March 20, 2025
+
+### New Features
+
+- **Project `@cmmv/sandbox`**
+  - Introduced an **interactive interface** for creating **complex contracts** in the CMMV standard.
+  - Enables **integrated testing** of **RESTful** and **GraphQL** routes directly within the interface.
+  - Provides support for **visualizing and managing** contracts before deployment.
+
+- **Dynamic Public Contract Loading in `@cmmv/core`**
+  - The **CMMV core** can now **automatically load public contracts**, facilitating modularization and eliminating the need for manual imports.
+
+- **Improvements and Fixes in Contract Interfaces**
+  - Contract interfaces have been **refactored** for better compatibility and structure.
+  - **Added `paramType` to messages**, ensuring **correct typing** in RPC and GraphQL calls.
+
+- **Improvements in Contract Parsing**
+  - Various **fixes in the contract parser** ensure **compatibility and standardization** of generated contracts.
+
+- **New Contract Compilation Class**
+  - Introduced a **compilation class that receives a JSON contract** and **automatically generates a TypeScript contract** in the correct format.
+  - Improved **automation in contract creation**, enabling integration with external systems.
+
+### Enhancements and Fixes in `@cmmv/auth`
+
+- **Fixes and Additional Data in Authentication Contracts**
+  - Adjustments in the **authentication module contracts**, ensuring **full compatibility** with the new contract models.
+  - Improved **user, permissions, and token management**, allowing for better access control.
+
+### Recommendations
+
+- **Use `@cmmv/sandbox` for Creating and Testing Contracts**
+  - Leverage the **new interactive interface** to simplify the creation of **complex contracts** and test APIs before deployment.
+
+- **Utilize the New Dynamic Contract Loading Feature**
+  - The CMMV **now automatically imports public contracts**, reducing **manual effort** when defining new system contracts.
+
+- **Update Existing Contracts to Support `paramType`**
+  - Ensure **your messages and contracts** include **`paramType`** for better data validation and compatibility with **REST, GraphQL, and RPC**.
+
+Updating to **0.9.0** introduces **major improvements in contract development and management**, while **simplifying testing and API integration**, making CMMV **more efficient and modular**.
+
 ## Version 0.8.34
 March 13, 2025
 

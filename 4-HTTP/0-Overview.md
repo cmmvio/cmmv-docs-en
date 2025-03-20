@@ -32,22 +32,3 @@ Application.create({
     contracts: [...],
 });
 ```
-
-## Benchmarks
-
-<br/>
-
-* [https://github.com/fastify/benchmarks](https://github.com/fastify/benchmarks)
-* Machine: linux x64 | 32 vCPUs | 128.0GB Mem
-* Node: v20.17.0
-* Run: Wed Jan 22 2025 05:33:16 GMT+0000 (Coordinated Universal Time)
-* Method: ``autocannon -c 100 -d 40 -p 10 localhost:3000``
-
-| Framework                | Version  | Router | Requests/s | Latency (ms) | Throughput/Mb |
-|--------------------------|----------|--------|------------|--------------|---------------|
-| bare                      | v20.17.0 | ✗      | 91084.8    | 10.51        | 16.24         |
-| fastify                   | 5.2.1    | ✓      | 87495.9    | 10.94        | 15.69         |
-| cmmv                      | 0.8.0    | ✓      | 85812.8    | 11.15        | 15.39         |
-| koa                       | 2.15.3   | ✗      | 78946.0    | 12.17        | 14.08         |
-| restify                   | 11.1.0   | ✓      | 58288.0    | 16.65        | 10.51         |
-| express                   | 5.0.1    | ✓      | 21299.2    | 46.42        | 3.80          |
