@@ -29,6 +29,7 @@ CMMV offers a range of plugins to complement applications, providing additional 
 | [@cmmv/cli](https://github.com/cmmvio/cmmv-cli)                               | CLI tool to create and manage CMMV projects, enabling quick scaffolding and configuration of new applications. | <a href="https://www.npmjs.com/package/@cmmv/cli"><img src="https://img.shields.io/npm/v/@cmmv/cli.svg" alt="NPM Version" /></a> |
 | [@cmmv/openapi](https://github.com/cmmvio/cmmv/tree/main/packages/openapi)  | **(Beta)** Auto-generates OpenAPI/Swagger documentation for CMMV applications, supporting authentication, pagination, and automatic schema generation. | <a href="https://www.npmjs.com/package/@cmmv/openapi"><img src="https://img.shields.io/npm/v/@cmmv/openapi.svg" alt="NPM Version" /></a> |
 | [@cmmv/graphql](https://github.com/cmmvio/cmmv/tree/main/packages/graphql)  | **(Beta)** GraphQL integration module, automatically generating types and resolvers from system contracts, including built-in authentication support. | <a href="https://www.npmjs.com/package/@cmmv/graphql"><img src="https://img.shields.io/npm/v/@cmmv/graphql.svg" alt="NPM Version" /></a> |
+| [@cmmv/throttler](https://github.com/cmmvio/cmmv/tree/main/packages/throttler) | **(Beta)** Provides rate-limiting capabilities for REST, GraphQL, and RPC endpoints to protect against abuse and optimize traffic. | <a href="https://www.npmjs.com/package/@cmmv/throttler"><img src="https://img.shields.io/npm/v/@cmmv/throttler.svg" alt="NPM Version" /></a> |
 
 ## Services
 
