@@ -1,170 +1,87 @@
-# Events
+# Events (Now part of `@cmmv/core` since v0.13)
 
-Repository: [https://github.com/cmmvio/cmmv-events](https://github.com/cmmvio/cmmv-events)
+> **Notice:** As of version `0.13`, the `@cmmv/events` module has been fully merged into `@cmmv/core`. You no longer need to install or import `@cmmv/events` separately — all functionality is available out-of-the-box via `@cmmv/core`.
 
-The `@cmmv/events` module provides a robust and flexible event-driven system for managing asynchronous communication within your application. Leveraging `eventemitter2`, this module enables developers to create, emit, and listen to events seamlessly, enhancing the modularity and scalability of the application.
+## Migration
+
+If your application was using `@cmmv/events` prior to v0.13, you can safely remove it from your dependencies and update your imports as follows:
+
+### Before:
+```ts
+import { EventsModule, EventsService, OnEvent } from '@cmmv/events';
+```
+
+### After:
+```ts
+import { EventsService, OnEvent } from '@cmmv/core';
+```
+
+There is no need to include `EventsModule` in your module list anymore — event support is now globally available.
 
 ## Features
 
-- **Event Binding:** Easily bind methods to events using the `@OnEvent` decorator.
-- **Asynchronous Communication:** Facilitate inter-service communication with minimal coupling.
-- **Payload Flexibility:** Supports any payload type, with recommended use of TypeScript interfaces for structured data.
-- **Integration with CMMV Framework:** Built-in compatibility with `@cmmv/core` modules and services.
-- **Error Handling:** Ensures robust error logging and debugging for event-driven workflows.
+- **Event Binding:** Bind methods to events using the `@OnEvent` decorator.
+- **Asynchronous Communication:** Facilitate decoupled inter-service workflows.
+- **Flexible Payloads:** Supports any type of payload, with strong typing via TypeScript.
+- **Seamless Integration:** Integrated directly into the core framework.
+- **Error Handling:** Reliable event execution with detailed logging for debugging.
 
 ## Installation
 
-To install the `@cmmv/events` module:
-
-```bash
-$ pnpm add @cmmv/events
-```
-
-## Configuration
-
-No additional configuration is required. The `@cmmv/events` module works out of the box with your CMMV application.
-
-## Setting Up the Application
-
-In your `index.ts`, include the `EventsModule` along with any modules or services that use event-based communication:
-
-```typescript
-import { Application } from '@cmmv/core';
-import { DefaultAdapter, DefaultHTTPModule } from '@cmmv/http';
-import { EventsModule, EventsService } from '@cmmv/events';
-
-import { ListernersModule } from './listeners.module';
-
-Application.create({
-    httpAdapter: DefaultAdapter,
-    modules: [
-        DefaultHTTPModule,
-        EventsModule,
-        ListernersModule,
-    ],
-    services: [EventsService],
-});
-```
+> ❌ No installation needed. Events are now built-in to `@cmmv/core`.
 
 ## Usage
 
-### Creating Event Listeners
+### Listening to Events
 
-Use the `@OnEvent` decorator to bind a method to an event. Event listeners can be added to any service, controller, or gateway in your application.
+Use the `@OnEvent` decorator to respond to events:
 
-```typescript
-import { Service } from '@cmmv/core';
-import { OnEvent } from '@cmmv/events';
-import { EventsService } from '@cmmv/events';
+```ts
+import { Service, OnEvent } from '@cmmv/core';
 
 @Service('listener')
 export class Listener {
-    constructor(private readonly eventsService: EventsService) {}
-
-    @OnEvent('hello-world')
-    public async OnReceiveMessage(payload: any) {
-        console.log('hello-world event received:', payload);
+    @OnEvent('task.completed')
+    public onTaskCompleted(payload: any) {
+        console.log('Task completed:', payload);
     }
 }
 ```
 
 ### Emitting Events
 
-To emit an event, inject `EventsService` into your class and call the `emit` method:
+Use the `EventsService` to emit events from any service or controller:
 
-```typescript
-this.eventsService.emit('event-name', { key: 'value' });
+```ts
+import { EventsService, Service } from '@cmmv/core';
+
+@Service('task-service')
+export class TaskService {
+    constructor(private readonly events: EventsService) {}
+
+    public completeTask() {
+        // ... task logic ...
+        this.events.emit('task.completed', { id: 123, title: 'Write docs' });
+    }
+}
 ```
-
-<br/>
-
-- **First Parameter:** Name of the event.
-- **Second Parameter:** Payload for the event (any type). Recommended to use a TypeScript interface for the payload structure.
-
-### Example Event Emission
-
-```typescript
-this.eventsService.emit('user.created', { id: 1, name: 'John Doe' });
-```
-
-## Decorators
-
-### `@OnEvent(eventName: string)`
-Binds a method to listen for a specific event.
 
 ## Best Practices
 
-- **Use Interfaces for Payloads:** Define TypeScript interfaces for event payloads to ensure consistency and type safety.
-- **Group Related Events:** Use event namespaces or prefixes to group related events (e.g., `user.created`, `user.updated`).
+- **Use namespaced events:** e.g., `user.created`, `task.failed`.
+- **Define payload interfaces** for clarity and type safety.
+- **Avoid redundant cron/event logic** in multi-instance environments unless controlled via config or infra setup.
 
-## Example Application
 
-Here is an example of an application utilizing the `@cmmv/events` module:
+## Compatibility
 
-```typescript
-import { Application } from '@cmmv/core';
-import { DefaultAdapter, DefaultHTTPModule } from '@cmmv/http';
-import { EventsModule } from '@cmmv/events';
+- Fully compatible with applications using `@cmmv/core >= 0.13`.
+- Legacy applications using `@cmmv/events` can continue to work, but usage is **deprecated**.
 
-import { UserModule } from './user.module';
-
-Application.create({
-    httpAdapter: DefaultAdapter,
-    modules: [
-        DefaultHTTPModule,
-        EventsModule,
-        UserModule,
-    ],
-});
-```
-
-### User Module
-
-```typescript
-import { Module } from '@cmmv/core';
-import { UserListener } from './listeners/user.listener';
-
-export const UserModule = new Module('user', {
-    providers: [UserListener],
-});
-```
-
-### User Listener
-
-```typescript
-import { Service } from '@cmmv/core';
-import { OnEvent } from '@cmmv/events';
-
-@Service('user-listener')
-export class UserListener {
-    @OnEvent('user.created')
-    public handleUserCreated(payload: { id: number; name: string }) {
-        console.log(`User created:`, payload);
-    }
-}
-```
-
-### Emitting Events in a Controller
-
-```typescript
-import { Controller } from '@cmmv/core';
-import { EventsService } from '@cmmv/events';
-
-@Controller('user')
-export class UserController {
-    constructor(private readonly eventsService: EventsService) {}
-
-    public async createUser() {
-        // Perform user creation logic...
-
-        // Emit user.created event
-        this.eventsService.emit('user.created', { id: 1, name: 'John Doe' });
-    }
-}
-```
 
 ## Advantages
 
-- **Decoupled Logic:** Enables better separation of concerns by decoupling event emitters and listeners.
-- **Scalable Communication:** Ideal for applications with complex workflows requiring event-based communication.
-- **Seamless Integration:** Works out of the box with the CMMV framework, simplifying setup and usage.
+- **No extra module setup**
+- **Less boilerplate**
+- **Better cohesion with the framework**
+- **Ideal for modular or service-based design**

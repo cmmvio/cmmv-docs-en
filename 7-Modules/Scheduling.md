@@ -1,25 +1,38 @@
-# Scheduling
+# Scheduling (Now part of `@cmmv/core` since v0.13)
 
-Repository: [https://github.com/cmmvio/cmmv/tree/main/packages/scheduling](https://github.com/cmmvio/cmmv/tree/main/packages/scheduling)
+> **Notice:** As of version `0.13`, the `@cmmv/scheduling` module has been fully integrated into `@cmmv/core`. You no longer need to install or register it separately — all scheduling features are now available natively.
 
-The ``@cmmv/scheduling`` package provides a simple way to schedule tasks in your CMMV application using cron patterns. This module is built using the ``cron`` library, and the ``@Cron`` decorator allows you to easily schedule methods to run at specific intervals.
+## Migration
 
-To install the scheduling module, run the following command:
+If your application was previously using `@cmmv/scheduling`, you can remove it from your dependencies and update your imports:
 
-```bash
-$ pnpm add @cmmv/scheduling
+### Before:
+```ts
+import { SchedulingModule, SchedulingService, Cron } from '@cmmv/scheduling';
 ```
+
+### After:
+```ts
+import { Cron } from '@cmmv/core';
+```
+
+You no longer need to add `SchedulingModule` or register `SchedulingService` — scheduling is available globally by default.
+
+## Features
+
+- **Cron Scheduling:** Schedule tasks using cron expressions.
+- **@Cron Decorator:** Easily attach cron jobs to class methods.
+- **Built-in Integration:** No need for manual setup with core applications.
+- **Logger Support:** Compatible with the `Logger` from `@cmmv/core`.
 
 ## Usage
 
-The ``@Cron`` decorator is used to define methods that should be scheduled according to a cron pattern. The scheduling is powered by the cron library, which provides flexible and powerful cron scheduling capabilities.
+Use the `@Cron` decorator to define tasks that run on a schedule:
 
-After installing the package, you can use the ``@Cron`` decorator and the SchedulingService in your project:
+```ts
+import { Cron, Logger, Service } from '@cmmv/core';
 
-```typescript
-import { Cron } from '@cmmv/scheduling';
-import { Logger } from '@cmmv/core';
-
+@Service('task')
 export class TaskService {
     private logger: Logger = new Logger('TaskService');
 
@@ -30,47 +43,11 @@ export class TaskService {
 }
 ```
 
-## Setting
+## Cron Expression Format
 
-Ensure that the ``SchedulingService`` is initialized during the startup of your application. This will register and start all the scheduled tasks defined with the ``@Cron`` decorator.
-
-```typescript
-require('dotenv').config();
-
-import { Application } from '@cmmv/core';
-import { DefaultAdapter, DefaultHTTPModule } from '@cmmv/http';
-import { WSModule, WSAdapter } from '@cmmv/ws';
-...
-import { SchedulingModule, SchedulingService } from '@cmmv/scheduling';
-
-Application.create({
-    httpAdapter: DefaultAdapter,
-    wsAdapter: WSAdapter,
-    modules: [
-        ...
-        SchedulingModule
-    ],
-    services: [..., SchedulingService]
-});
 ```
-
-## Decorator
-
-The ``@Cron`` decorator is used to schedule a method to run based on a cron pattern. It accepts a cron expression as its argument, which defines the schedule.
-
-```typescript
-@Cron('*/5 * * * * *')  // Runs every 5 seconds
-handleTask() {
-    this.logger.log('Task executed every 5 seconds');
-}
-```
-
-The cron patterns follow the standard format used by the cron library:
-
-```scss
 *    *    *    *    *    *
 ┬    ┬    ┬    ┬    ┬    ┬
-│    │    │    │    │    │
 │    │    │    │    │    └ Day of the week (0 - 7) (Sunday=0 or 7)
 │    │    │    │    └───── Month (1 - 12)
 │    │    │    └────────── Day of the month (1 - 31)
@@ -79,14 +56,27 @@ The cron patterns follow the standard format used by the cron library:
 └───────────────────────── Second (0 - 59, optional)
 ```
 
-**Some Sample Cron Patterns**
+## Examples
 
-Here are a few examples of cron patterns you can use with the ``@Cron`` decorator:
+- `* * * * * *` — Runs every second
+- `*/5 * * * * *` — Runs every 5 seconds
+- `0 0 * * * *` — Runs every hour
+- `0 0 12 * * *` — Runs every day at noon
+- `0 0 1 1 *` — Runs once a year on January 1st
 
-* ``* * * * * *`` – Runs every second
-* ``*/5 * * * * *`` – Runs every 5 seconds
-* ``0 0 * * * *`` – Runs every hour
-* ``0 0 12 * * *`` – Runs every day at noon
-* ``0 0 1 1 *`` – Runs at midnight on January 1st
+## Important Note on Multi-Instance Behavior
 
-The ``@cmmv/scheduling`` module provides a powerful and flexible way to schedule tasks in a CMMV application using cron patterns. The ``@Cron`` decorator makes it easy to define when certain methods should run, and the ``SchedulingService`` ensures these tasks are properly managed and executed at runtime.
+When running multiple instances of the same application, **each instance will execute the same cron task**. This can lead to **redundant executions**.
+
+Until native instance-limiting is introduced, it is recommended to:
+
+- Use `ENV`-based guards (`if (process.env.RUN_CRONS === 'true')`)
+- Rely on external orchestration (e.g., designate a single runner pod/container in k8s)
+- Avoid shared operations unless properly idempotent
+
+## Advantages
+
+- **Zero Config:** Scheduling runs with no additional registration
+- **Clean Syntax:** Decorator-based setup
+- **Type-safe:** Fully TypeScript-compatible
+- **Future-Proof:** Planned support for distributed cron/task orchestration
