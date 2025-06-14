@@ -330,6 +330,7 @@ app.use(serverStatic('public'));
 
 app.set('view engine', 'pug');
 
+
 app.get('/view', function (req, res) {
     res.render('index', { title: 'Hey', message: 'Hello there!' });
 });
@@ -342,6 +343,46 @@ app.listen({ host, port })
 })
 .catch(err => {
     throw Error(err.message);
+});
+```
+
+## Proxy
+
+The `@cmmv/proxy` middleware allows forwarding requests to an external server. This is useful when exposing third-party APIs or creating a simple gateway.
+
+**Installation**
+
+```bash
+$ pnpm add @cmmv/proxy
+```
+
+**Usage**
+
+```typescript
+import proxy from '@cmmv/proxy';
+
+app.use('/api', proxy({ target: 'https://api.example.com' }));
+```
+
+## Multer
+
+`@cmmv/multer` handles `multipart/form-data` uploads and follows the same API as Express's multer.
+
+**Installation**
+
+```bash
+$ pnpm add @cmmv/multer
+```
+
+**Usage**
+
+```typescript
+import multer from '@cmmv/multer';
+
+const upload = multer({ dest: 'uploads/' });
+
+app.post('/upload', upload.single('file'), (req, res) => {
+    res.json({ file: req.file });
 });
 ```
 
@@ -358,6 +399,8 @@ import cors from '@cmmv/cors';
 import cookieParser from '@cmmv/cookie-parser';
 import compression from '@cmmv/compression';
 import helmet from '@cmmv/helmet';
+import proxy from '@cmmv/proxy';
+import multer from '@cmmv/multer';
 
 const app = cmmv({
     /*http2: true,
@@ -378,6 +421,7 @@ app.use(cookieParser());
 app.use(json({ limit: '50mb' }));
 app.use(urlencoded({ limit: '50mb', extended: true }));
 app.use(compression({ level: 6 }));
+app.use(multer());
 app.use(
     helmet({
         contentSecurityPolicy: {
@@ -393,6 +437,7 @@ app.use(
 );
 
 app.set('view engine', 'pug');
+app.use('/api', proxy({ target: 'https://api.example.com' }));
 
 app.get('/view', function (req, res) {
     res.render('index', { title: 'Hey', message: 'Hello there!' });

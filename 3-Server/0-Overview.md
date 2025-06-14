@@ -31,6 +31,8 @@ Currently, the project is in a testing phase and therefore not recommended for p
 * Built-in support for cryptographic algorithms such as **MD5**, **SHA-1**, and others from the ``crypto`` module.
 * Superior performance compared to **Koa**, **Hapi**, and **Express**, and ongoing optimization to achieve performance similar to **Fastify**.
 * Full compatibility with all methods provided by **Express.js**.
+* Built-in reverse proxy middleware for forwarding requests.
+* File upload support via the `@cmmv/multer` middleware.
 
 ## Benchmarks
 
